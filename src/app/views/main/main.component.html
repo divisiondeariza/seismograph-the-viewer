@@ -1,4 +1,19 @@
 <ng-select 
 	id="candidates-select"
-	[items] = "candidatesService.getCandidates() | async">
+	[items] = "candidates"
+	bindLabel="name"
+	bindValue="id"
+    [multiple]="true"
+    [maxSelectedItems]="4"
+	>
+</ng-select>
+
+<ng-select 
+	id="viz-categories-select"
+	[items] = "vizCategories"
+	bindLabel="name"
+	bindValue="id"
+    [multiple]="true"
+    [maxSelectedItems]="4"
+	>
 </ng-select>

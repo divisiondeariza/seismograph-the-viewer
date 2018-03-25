@@ -13,6 +13,8 @@ import { VizCategory } from '../../classes/viz-category';
 @Component({selector: 'ng-select', template: ''})
 class NgSelectStubComponent {
   @Input() items: any;
+  @Input() multiple: boolean
+  @Input() maxSelectedItems: boolean
   // @Input() limit: Number;
   // @Input() isPrincipal: Boolean;
   // @Output() selectedChange = new EventEmitter<String[]>();
@@ -70,17 +72,35 @@ describe('MainComponent', () => {
     });
     it('Should set candidates correctly', ()=>{
       expect(candidatesEl.componentInstance.items).toEqual(candidates);
+    });
+
+    it('should configure correctly the ng-selec attributes', ()=>{
+      expect(candidatesEl.attributes.bindLabel).toEqual("name");
+      expect(candidatesEl.attributes.bindValue).toEqual("id");
+      expect(candidatesEl.componentInstance.multiple).toEqual(true);
+      expect(candidatesEl.componentInstance.maxSelectedItems).toEqual(4);
+
     })
   });
 
-  // describe('setting  select', ()=>{
-  //   let candidatesEl: DebugElement;
 
-  //   beforeEach(() =>{
-  //     candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
-  //   });
-  //   it('Should set candidates correctly', ()=>{
-  //     expect(candidatesEl.componentInstance.items).toEqual(candidates);
-  //   });
-  // });
+  describe('setting vizCategories select', ()=>{
+    let vizCategoriesEl: DebugElement;
+
+    beforeEach(() =>{
+      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
+    });
+    it('Should set vizCategories correctly', ()=>{
+      expect(vizCategoriesEl.componentInstance.items).toEqual(vizCategories);
+    });
+
+    it('should configure correctly the ng-selec attributes', ()=>{
+      expect(vizCategoriesEl.attributes.bindLabel).toEqual("name");
+      expect(vizCategoriesEl.attributes.bindValue).toEqual("id");
+      expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
+      expect(vizCategoriesEl.componentInstance.maxSelectedItems).toEqual(4);
+
+    })
+  });
+
 });

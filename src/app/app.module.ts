@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './views/main/main.component';
+import { CandidatesService } from './services/candidates/candidates.service';
+import { VizCategoriesService } from './services/viz-categories/viz-categories.service';
 
 
 @NgModule({
@@ -14,9 +17,12 @@ import { MainComponent } from './views/main/main.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgSelectModule
   ],
-  providers: [],
+  providers: [CandidatesService,
+              VizCategoriesService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
