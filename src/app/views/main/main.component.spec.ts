@@ -7,6 +7,8 @@ import { By } from '@angular/platform-browser';
 import { MainComponent } from './main.component';
 import { CandidatesService } from '../../services/candidates/candidates.service';
 import { Candidate } from '../../classes/candidate';
+import { ModesService } from '../../services/modes/modes.service';
+import { Mode } from '../../classes/mode';
 import { VizCategoriesService } from '../../services/viz-categories/viz-categories.service';
 import { VizCategory } from '../../classes/viz-category';
 
@@ -28,19 +30,35 @@ describe('MainComponent', () => {
   let getCandidatesSpy: jasmine.Spy;
   let vizCategories:VizCategory[];
   let getVizCategoriesSpy: jasmine.Spy;
+  let modes:Mode[];
+  let getModeSpy: jasmine.Spy;
 
   beforeEach(async(() => {
     candidates = [{ id: 'one', name: 'Candidate One', color:"#fff" }, { id: 'two', name: 'Candidate Two', color:"#888" }];
-    const candidatesService = jasmine.createSpyObj('SvCandidatesService', ['getCandidates']);
+    const candidatesService = jasmine.createSpyObj('CandidatesService', ['getCandidates']);
     getCandidatesSpy = candidatesService.getCandidates.and.returnValue(of(candidates));
 
     vizCategories = [{ id: 'one', name: 'VizCategory One', children: [
                     { id: 'one-a', name: 'VizCategory One a', children: []},
                     { id: 'one-b', name: 'VizCategory One b', children: []},
                     ] }]
-    const vizCategoriesService = jasmine.createSpyObj('SvVizCategoriesService', ['getVizCategories'])
+    const vizCategoriesService = jasmine.createSpyObj('VizCategoriesService', ['getVizCategories'])
     getVizCategoriesSpy = vizCategoriesService.getVizCategories.and.returnValue(of(vizCategories));                    
 
+    modes =  [
+                {   id: 'candidate-metric',
+                    showMode:"Candidate",
+                    showModeName:"candidate",
+                    metric:"metric",
+                    metricName:"Metric"  },         
+                {   id: 'theme-metric',
+                    showMode:"Theme",
+                    showModeName:"theme",
+                    metric:"metric",
+                    metricName:"Metric"  }, 
+                  ];
+    const modesService = jasmine.createSpyObj('VizModes', ['getModes'])
+    getVizCategoriesSpy = modesService.getModes.and.returnValue(of(modes));                    
 
 
     TestBed.configureTestingModule({
@@ -49,6 +67,7 @@ describe('MainComponent', () => {
       providers: [
         { provide:  VizCategoriesService, useValue: vizCategoriesService },
         { provide:  CandidatesService, useValue: candidatesService }
+        { provide:  ModesService, useValue: modesService }
       ]
     })
     .compileComponents();
@@ -103,21 +122,23 @@ describe('MainComponent', () => {
     })
   });
 
-  xdescribe('setting mode select', ()=>{
-    let vizCategoriesEl: DebugElement;
+  describe('setting mode select', ()=>{
+    let modesEl: DebugElement;
 
     beforeEach(() =>{
-      vizCategoriesEl = fixture.debugElement.query(By.css('#mode-select'));
+      modesEl = fixture.debugElement.query(By.css('#modes-select'));
     });
-    it('Should set vizCategories correctly', ()=>{
-      expect(vizCategoriesEl.componentInstance.items).toEqual(vizCategories);
+    it('Should set modes correctly', ()=>{
+      expect(modesEl.componentInstance.items).toEqual(modes);
     });
 
     it('should configure correctly the ng-selec attributes', ()=>{
-      expect(vizCategoriesEl.attributes.bindLabel).toEqual("name");
-      expect(vizCategoriesEl.attributes.bindValue).toEqual("id");
-      expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
-      expect(vizCategoriesEl.componentInstance.maxSelectedItems).toEqual(4);
+      expect(modesEl.attributes.bindLabel).toEqual("metricName");
+      expect(modesEl.attributes.bindValue).toEqual("id");
+      expect(modesEl.attributes.groupBy).toEqual("showMode");
+
+      // expect(modesEl.componentInstance.multiple).toEqual(true);
+      // expect(modesEl.componentInstance.maxSelectedItems).toEqual(4);
 
     })
   });

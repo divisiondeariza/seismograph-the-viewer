@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './views/main/main.component';
 import { CandidatesService } from './services/candidates/candidates.service';
 import { VizCategoriesService } from './services/viz-categories/viz-categories.service';
+import { ModesService } from './services/modes/modes.service';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { VizCategoriesService } from './services/viz-categories/viz-categories.s
     NgSelectModule
   ],
   providers: [CandidatesService,
-              VizCategoriesService,],
+              VizCategoriesService,
+              ModesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

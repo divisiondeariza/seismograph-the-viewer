@@ -17,3 +17,12 @@
     [maxSelectedItems]="4"
 	>
 </ng-select>
+
+<ng-select 
+	id="modes-select"
+	[items] = "modes"
+	bindLabel="metricName"
+	bindValue="id"
+	groupBy="showModeName"
+	>
+</ng-select>
