@@ -1,5 +1,4 @@
-export class Modes {
-	name: String;
+export class Mode {
 	id: String;
 	showMode: String;
 	showModeName: String;

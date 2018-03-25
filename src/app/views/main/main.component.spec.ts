@@ -103,4 +103,23 @@ describe('MainComponent', () => {
     })
   });
 
+  xdescribe('setting mode select', ()=>{
+    let vizCategoriesEl: DebugElement;
+
+    beforeEach(() =>{
+      vizCategoriesEl = fixture.debugElement.query(By.css('#mode-select'));
+    });
+    it('Should set vizCategories correctly', ()=>{
+      expect(vizCategoriesEl.componentInstance.items).toEqual(vizCategories);
+    });
+
+    it('should configure correctly the ng-selec attributes', ()=>{
+      expect(vizCategoriesEl.attributes.bindLabel).toEqual("name");
+      expect(vizCategoriesEl.attributes.bindValue).toEqual("id");
+      expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
+      expect(vizCategoriesEl.componentInstance.maxSelectedItems).toEqual(4);
+
+    })
+  });
+
 });
