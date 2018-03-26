@@ -39,7 +39,7 @@ export class MainComponent implements OnInit {
   }
 
   changeMode($event){
-    this.showBy =  $event.showMode
+    this.showBy =  $event.showMode;
   }
 
 }
