@@ -17,6 +17,7 @@ class NgSelectStubComponent {
   @Input() items: any;
   @Input() multiple: boolean
   @Input() maxSelectedItems: boolean
+  @Output() change = new EventEmitter()
   // @Input() limit: Number;
   // @Input() isPrincipal: Boolean;
   // @Output() selectedChange = new EventEmitter<String[]>();
@@ -96,8 +97,17 @@ describe('MainComponent', () => {
     it('should configure correctly the ng-selec attributes', ()=>{
       expect(candidatesEl.attributes.bindLabel).toEqual("name");
       expect(candidatesEl.attributes.bindValue).toEqual("id");
-      expect(candidatesEl.componentInstance.multiple).toEqual(true);
       expect(candidatesEl.componentInstance.maxSelectedItems).toEqual(4);
+
+    });
+
+    it("should set isMultiple true only when showBy != 'candidate' ", ()=>{
+      component.showBy = 'candidate';
+      fixture.detectChanges();
+      expect(candidatesEl.componentInstance.multiple).toEqual(false);
+      component.showBy = 'theme';
+      fixture.detectChanges();
+      expect(candidatesEl.componentInstance.multiple).toEqual(true);
 
     })
   });
@@ -116,16 +126,29 @@ describe('MainComponent', () => {
     it('should configure correctly the ng-selec attributes', ()=>{
       expect(vizCategoriesEl.attributes.bindLabel).toEqual("name");
       expect(vizCategoriesEl.attributes.bindValue).toEqual("id");
-      expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
       expect(vizCategoriesEl.componentInstance.maxSelectedItems).toEqual(4);
+
+    })
+
+    it("should set isMultiple true only when showBy != 'theme' ", ()=>{
+      component.showBy = 'candidate';
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
+      component.showBy = 'theme';
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.multiple).toEqual(false);
 
     })
   });
 
   describe('setting mode select', ()=>{
     let modesEl: DebugElement;
+    let vizCategoriesEl: DebugElement;
+    let candidatesEl: DebugElement;
 
     beforeEach(() =>{
+      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
+      candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
       modesEl = fixture.debugElement.query(By.css('#modes-select'));
     });
     it('Should set modes correctly', ()=>{
@@ -135,12 +158,19 @@ describe('MainComponent', () => {
     it('should configure correctly the ng-selec attributes', ()=>{
       expect(modesEl.attributes.bindLabel).toEqual("metricName");
       expect(modesEl.attributes.bindValue).toEqual("id");
-      expect(modesEl.attributes.groupBy).toEqual("showMode");
+      expect(modesEl.attributes.groupBy).toEqual("showModeName");
 
-      // expect(modesEl.componentInstance.multiple).toEqual(true);
-      // expect(modesEl.componentInstance.maxSelectedItems).toEqual(4);
+    });
 
+    it('should set showBy correctly when change isn emmited', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
+                                                showMode:"candidate",
+                                                showModeName:"Candidate",
+                                                metric:"metric",
+                                                metricName:"Metric"  } );
+      expect(component.showBy).toEqual('candidate');
     })
+
   });
 
 });

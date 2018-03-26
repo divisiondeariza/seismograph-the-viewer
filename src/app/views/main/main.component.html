@@ -3,7 +3,7 @@
 	[items] = "candidates"
 	bindLabel="name"
 	bindValue="id"
-    [multiple]="true"
+    [multiple]="showBy != 'candidate'"
     [maxSelectedItems]="4"
 	>
 </ng-select>
@@ -13,7 +13,7 @@
 	[items] = "vizCategories"
 	bindLabel="name"
 	bindValue="id"
-    [multiple]="true"
+    [multiple]="showBy != 'theme'"
     [maxSelectedItems]="4"
 	>
 </ng-select>
@@ -24,5 +24,6 @@
 	bindLabel="metricName"
 	bindValue="id"
 	groupBy="showModeName"
+	(change)="changeMode($event)"
 	>
 </ng-select>

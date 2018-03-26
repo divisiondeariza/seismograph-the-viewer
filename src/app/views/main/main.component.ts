@@ -16,7 +16,8 @@ import { Mode } from '../../classes/mode';
 export class MainComponent implements OnInit {
   public candidates: Candidate[];
   public vizCategories: VizCategory[];
-  public modes: Modes[];
+  public modes: Mode[];
+  public showBy: String;
 
   constructor(private candidatesService: CandidatesService,
               private vizCategoriesServices: VizCategoriesService,
@@ -35,6 +36,10 @@ export class MainComponent implements OnInit {
         modes => this.modes = modes
       )
 
+  }
+
+  changeMode($event){
+    this.showBy =  $event.showMode
   }
 
 }
