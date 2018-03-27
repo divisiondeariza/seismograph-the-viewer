@@ -9,12 +9,14 @@ import { MainComponent } from './views/main/main.component';
 import { CandidatesService } from './services/candidates/candidates.service';
 import { VizCategoriesService } from './services/viz-categories/viz-categories.service';
 import { ModesService } from './services/modes/modes.service';
+import { GraphComponent } from './elements/graph/graph.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,

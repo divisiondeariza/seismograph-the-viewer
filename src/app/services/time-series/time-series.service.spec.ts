@@ -71,7 +71,11 @@ describe('TimeSeriesService', () => {
   		}
   	]
 
-  	expect(service.getSeriesByCandidate(expectedData, 'candidate1', 'metric1', ['theme1', 'theme2']))
+  	expect(service.getSeries(expectedData, 
+                            'metric1', 
+                            ['candidate1'],  
+                            ['theme1', 'theme2'],
+                            'candidate'))
   		.toEqual(expectedSeries);
   }));
 
@@ -92,7 +96,11 @@ describe('TimeSeriesService', () => {
   		}
   	]
 
-  	expect(service.getSeriesByTheme(expectedData, 'theme1', 'metric1', ['candidate1', 'candidate2']))
+    expect(service.getSeries(expectedData, 
+                            'metric1', 
+                            ['candidate1', 'candidate2'],  
+                            ['theme1'],
+                            'theme'))
   		.toEqual(expectedSeries);
   }));
 
