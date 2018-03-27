@@ -67,7 +67,7 @@ describe('MainComponent', () => {
                       NgSelectStubComponent ],
       providers: [
         { provide:  VizCategoriesService, useValue: vizCategoriesService },
-        { provide:  CandidatesService, useValue: candidatesService }
+        { provide:  CandidatesService, useValue: candidatesService },
         { provide:  ModesService, useValue: modesService }
       ]
     })

@@ -58,14 +58,14 @@ describe('TimeSeriesService', () => {
 	  
   	const expectedSeries:TimeSerie[] = [
   		{'values':[
-  			{'x': 0, 'y': new Date('2018-01-01')},
-  			{'x': 0.5, 'y': new Date('2018-01-02')}
+  			{'y': 0, 'x': new Date('2018-01-01')},
+  			{'y': 0.5, 'x': new Date('2018-01-02')}
   			],
   		 'key': 'theme1'
   		},
   		{'values':[
-  			{'x': 2, 'y': new Date('2018-01-01')},
-  			{'x': 2.5, 'y': new Date('2018-01-02')}
+  			{'y': 2, 'x': new Date('2018-01-01')},
+  			{'y': 2.5, 'x': new Date('2018-01-02')}
   			],
   		 'key': 'theme2'
   		}
@@ -79,14 +79,14 @@ describe('TimeSeriesService', () => {
 	  
   	const expectedSeries:TimeSerie[] = [
   		{'values':[
-  			{'x': 0, 'y': new Date('2018-01-01')},
-  			{'x': 0.5, 'y': new Date('2018-01-02')}
+  			{'y': 0, 'x': new Date('2018-01-01')},
+  			{'y': 0.5, 'x': new Date('2018-01-02')}
   			],
   		 'key': 'candidate1'
   		},
   		{'values':[
-  			{'x': 1, 'y': new Date('2018-01-01')},
-  			{'x': 1.5, 'y': new Date('2018-01-02')}
+  			{'y': 1, 'x': new Date('2018-01-01')},
+  			{'y': 1.5, 'x': new Date('2018-01-02')}
   			],
   		 'key': 'candidate2'
   		}

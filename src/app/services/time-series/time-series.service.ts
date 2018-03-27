@@ -19,14 +19,14 @@ export class TimeSeriesService {
   }
 
   getSeriesByTheme(data:any, theme:string, metric:string, candidates:string[]):TimeSerie[]{
-  	return candidates.map((candidate)=>this.getSingleSerie(data, theme, candidate, 'candidate') )
+  	return candidates.map( candidate =>this.getSingleSerie(data, theme, candidate, 'candidate') )
   }
 
   private getSingleSerie(data:any, theme:string, candidate:string, keyname:string):TimeSerie{
 	let dates = data[theme][candidate].dates;
 	let values = data[theme][candidate].values;
 	let key = keyname == 'candidate'?candidate:theme
-	return {'values': dates.map((date,index)=> ({'y': new Date(date),'x': +values[index] })),
+	return {'values': dates.map((date,index)=> ({'x': new Date(date),'y': +values[index] })),
 			'key': key}  }
   
 
