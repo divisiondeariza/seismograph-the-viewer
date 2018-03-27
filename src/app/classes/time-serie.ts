@@ -1,5 +1,11 @@
 export class TimeSerie {
-	dates: String[];
-	values: String[];
-	candidateId: String;
+	values:LineChartDatum[];
+	key:String;
+	color?:String;
+}
+
+
+class LineChartDatum{
+	y:Number;
+	x:Date;
 }
