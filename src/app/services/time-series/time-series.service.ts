@@ -14,15 +14,15 @@ export class TimeSeriesService {
   	return this.http.get("assets/data/time-series.json")
   }
 
-  getSeriesByCandidate(data:any, candidate:String, metric:String, themes:String[]):TimeSerie[]{
+  getSeriesByCandidate(data:any, candidate:string, metric:string, themes:string[]):TimeSerie[]{
   	return themes.map((theme)=>this.getSingleSerie(data, theme, candidate, 'theme') )
   }
 
-  getSeriesByTheme(data:any, theme:String, metric:String, candidates:String[]):TimeSerie[]{
+  getSeriesByTheme(data:any, theme:string, metric:string, candidates:string[]):TimeSerie[]{
   	return candidates.map((candidate)=>this.getSingleSerie(data, theme, candidate, 'candidate') )
   }
 
-  private getSingleSerie(data:any, theme:String, candidate:String, keyname:String){
+  private getSingleSerie(data:any, theme:string, candidate:string, keyname:string):TimeSerie{
 	let dates = data[theme][candidate].dates;
 	let values = data[theme][candidate].values;
 	let key = keyname == 'candidate'?candidate:theme
@@ -31,3 +31,5 @@ export class TimeSeriesService {
   
 
 }
+
+

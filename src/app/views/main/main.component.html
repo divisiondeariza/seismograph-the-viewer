@@ -6,6 +6,10 @@
     [multiple]="showBy != 'candidate'"
     [maxSelectedItems]="4"
 	>
+	<ng-template ng-label-tmp ng-option-tmp let-item="item">
+        <img height="15" width="15" [src]="'assets/candidates_pics/' + item.id + '_j.jpg'"/>
+        {{item.name}}
+    </ng-template>
 </ng-select>
 
 <ng-select 
