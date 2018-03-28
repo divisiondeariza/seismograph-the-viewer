@@ -10,6 +10,8 @@ import { MainComponent } from './views/main/main.component';
 import { CandidatesService } from './services/candidates/candidates.service';
 import { VizCategoriesService } from './services/viz-categories/viz-categories.service';
 import { ModesService } from './services/modes/modes.service';
+import { TimeSeriesService } from './services/time-series/time-series.service';
+
 import { GraphComponent } from './elements/graph/graph.component';
 
 import 'd3';
@@ -27,11 +29,13 @@ import 'moment'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgSelectModule
+    NgSelectModule,
+    NvD3Module
   ],
   providers: [CandidatesService,
               VizCategoriesService,
-              ModesService],
+              ModesService,
+              TimeSeriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

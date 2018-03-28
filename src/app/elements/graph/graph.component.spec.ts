@@ -74,6 +74,7 @@ describe('GraphComponent', () => {
       component.metric = 'metric1';
       component.candidates = ['candidate1'];
       component.themes = ['theme1', 'theme2']
+      component.ngOnChanges();
       fixture.detectChanges();
       expect(getSeriesSpy).toHaveBeenCalledTimes(1);
       expect(getSeriesSpy).toHaveBeenCalledWith(rawData, 'metric1', ['candidate1'],  ['theme1', 'theme2'], 'candidate');

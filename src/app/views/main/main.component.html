@@ -5,6 +5,7 @@
 	bindValue="id"
     [multiple]="showBy != 'candidate'"
     [maxSelectedItems]="4"
+    (change)="changeCandidates($event)"
 	>
 	<ng-template ng-label-tmp ng-option-tmp let-item="item">
         <img height="15" width="15" [src]="'assets/candidates_pics/' + item.id + '_j.jpg'"/>
@@ -19,6 +20,7 @@
 	bindValue="id"
     [multiple]="showBy != 'theme'"
     [maxSelectedItems]="4"
+    (change)="changeThemes($event)"
 	>
 </ng-select>
 
@@ -31,3 +33,12 @@
 	(change)="changeMode($event)"
 	>
 </ng-select>
+
+<app-graph [showBy]="showBy"
+		   [metric]="metric"
+		   [candidates]="selectedCandidatesIds"
+		   [themes]="selectedThemesIds"
+
+
+			
+			></app-graph>

@@ -18,6 +18,9 @@ export class MainComponent implements OnInit {
   public vizCategories: VizCategory[];
   public modes: Mode[];
   public showBy: String;
+  public metric: String;
+  public selectedCandidatesIds: String[];
+  public selectedThemesIds: String[];
 
   constructor(private candidatesService: CandidatesService,
               private vizCategoriesServices: VizCategoriesService,
@@ -40,6 +43,15 @@ export class MainComponent implements OnInit {
 
   changeMode($event){
     this.showBy =  $event.showMode;
+    this.metric = $event.metric;
+  }
+
+  changeCandidates($event){
+    this.selectedCandidatesIds = ($event instanceof Array)?$event.map((candidate)=>(candidate.id)):[ $event.id ];
+  }
+
+  changeThemes($event){
+    this.selectedThemesIds = ($event instanceof Array)?$event.map((theme)=>(theme.id)):[ $event.id ];
   }
 
 }

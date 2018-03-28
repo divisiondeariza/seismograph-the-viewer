@@ -18,11 +18,17 @@ class NgSelectStubComponent {
   @Input() multiple: boolean
   @Input() maxSelectedItems: boolean
   @Output() change = new EventEmitter()
-  // @Input() limit: Number;
-  // @Input() isPrincipal: Boolean;
-  // @Output() selectedChange = new EventEmitter<String[]>();
+
 }
 
+@Component({selector: 'app-graph', template: ''})
+class GraphComponent {
+  @Input() showBy: string;
+  @Input() metric: string;
+  @Input() candidates: string[];
+  @Input() themes: string[];
+
+}
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -64,7 +70,8 @@ describe('MainComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ MainComponent,
-                      NgSelectStubComponent ],
+                      NgSelectStubComponent,
+                      GraphComponent],
       providers: [
         { provide:  VizCategoriesService, useValue: vizCategoriesService },
         { provide:  CandidatesService, useValue: candidatesService },
@@ -143,12 +150,9 @@ describe('MainComponent', () => {
 
   describe('setting mode select', ()=>{
     let modesEl: DebugElement;
-    let vizCategoriesEl: DebugElement;
-    let candidatesEl: DebugElement;
+
 
     beforeEach(() =>{
-      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
-      candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
       modesEl = fixture.debugElement.query(By.css('#modes-select'));
     });
     it('Should set modes correctly', ()=>{
@@ -172,5 +176,51 @@ describe('MainComponent', () => {
     })
 
   });
+
+  describe('setting graph component', ()=>{
+    let modesEl: DebugElement;
+    let vizCategoriesEl: DebugElement;
+    let candidatesEl: DebugElement;
+    let graphEl: DebugElement;
+
+    beforeEach(() =>{
+      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
+      candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
+      modesEl = fixture.debugElement.query(By.css('#modes-select'));
+      graphEl = fixture.debugElement.query(By.css('app-graph'));
+    });    
+
+    it('should connect graphEl with data from selectors - show by candidate case', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
+                                                showMode:"candidate",
+                                                showModeName:"Candidate",
+                                                metric:"metric2",
+                                                metricName:"Metric"  } );
+      candidatesEl.componentInstance.change.emit({ id: 'two', name: 'Candidate Two', color:"#888" })
+      vizCategoriesEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+      fixture.detectChanges();
+      expect(graphEl.componentInstance.showBy).toEqual('candidate');
+      expect(graphEl.componentInstance.metric).toEqual('metric2');
+      expect(graphEl.componentInstance.candidates).toEqual([ 'two' ]);
+      expect(graphEl.componentInstance.themes).toEqual(['one-a']);
+
+    });
+
+    it('should connect graphEl with data from selectors - show by theme case', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'theme-metric',
+                                                showMode:"theme",
+                                                showModeName:"Theme",
+                                                metric:"metric2",
+                                                metricName:"Metric"  } );
+      candidatesEl.componentInstance.change.emit([{ id: 'two', name: 'Candidate Two', color:"#888" }])
+      vizCategoriesEl.componentInstance.change.emit({ id: 'one-a', name: 'VizCategory One a', children: []});
+      fixture.detectChanges();
+      expect(graphEl.componentInstance.showBy).toEqual('theme');
+      expect(graphEl.componentInstance.metric).toEqual('metric2');
+      expect(graphEl.componentInstance.candidates).toEqual([ 'two' ]);
+      expect(graphEl.componentInstance.themes).toEqual(['one-a']);
+
+    })
+  })
 
 });

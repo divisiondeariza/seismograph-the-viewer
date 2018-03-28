@@ -1,44 +1,4 @@
 [
-  {
-    "id": "indices",
-    "name": "Índices Básicos",
-    "children": [
-      {
-        "children": [],
-        "id": "diff_fan_count",
-        "name": "Diferencial número de seguidores"
-      },
-      {
-        "children": [],
-        "id": "publications_count",
-        "name": "Número de publicaciones"
-      },
-      {
-        "children": [],
-        "id": "diff_publications_count",
-        "name": "Diferencial número de publicaciones"
-      },
-      {
-        "children": [],
-        "id": "diff_reactions_count",
-        "name": "Diferencial número de reacciones"
-      },
-      {
-        "children": [],
-        "id": "fan_count",
-        "name": "Número de seguidores"
-      },
-      {
-        "children": [],
-        "id": "reactions_count",
-        "name": "Número de reacciones"
-      }
-    ]
-  },
-  {
-    "id": "themes",
-    "name": "Temas",
-    "children": [
       {
         "children": [],
         "id": "seguridad_urbana_topic",
@@ -165,5 +125,3 @@
         "name": "Ambiente"
       }
     ]
-  }
-]

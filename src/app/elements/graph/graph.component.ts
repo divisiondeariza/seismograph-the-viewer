@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, DoCheck, OnChanges } from '@angular/core';
 import { TimeSeriesService } from '../../services/time-series/time-series.service';
 import { TimeSerie } from '../../classes/time-serie';
 import { NvD3Module } from 'ng2-nvd3';
@@ -11,12 +11,13 @@ declare let d3: any;
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css']
 })
-export class GraphComponent implements OnInit{
+export class GraphComponent implements OnInit, OnChanges{
+  @Input() showBy: string;
+  @Input() metric: string;
+  @Input() candidates: string[];
+  @Input() themes: string[];
   public rawData: any;
-  public showBy: string;
-  public metric: string;
-  public candidates: string[];
-  public themes: string[];
+  public options: any;
   public timeSeries: TimeSerie[];
 
   constructor(
@@ -47,10 +48,8 @@ export class GraphComponent implements OnInit{
     }
   }
 
-  ngDoCheck(){
-    if(this.showBy)
+  ngOnChanges(){
       this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.metric, this.candidates, this.themes, this.showBy);
-
   }
 
 }
