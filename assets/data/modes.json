@@ -1,0 +1,44 @@
+[
+   {
+      "id":"candidate-importance",
+      "showMode":"candidate",
+      "showModeName":"Por Candidato",
+      "metric":"importance",
+      "metricName":"Importancia"
+   },
+   {
+      "id":"candidate-effectivity",
+      "showMode":"candidate",
+      "showModeName":"Por Candidato",
+      "metric":"effectivity",
+      "metricName":"Efectividad"
+   },
+   {
+      "id":"candidate-opinion",
+      "showMode":"candidate",
+      "showModeName":"Por Candidato",
+      "metric":"opinion",
+      "metricName":"Opinión"
+   },
+   {
+      "id":"theme-importance",
+      "showMode":"theme",
+      "showModeName":"Por Tema",
+      "metric":"importance",
+      "metricName":"Importancia"
+   },
+   {
+      "id":"theme-effectivity",
+      "showMode":"theme",
+      "showModeName":"Por Tema",
+      "metric":"effectivity",
+      "metricName":"Efectividad"
+   },
+   {
+      "id":"theme-opinion",
+      "showMode":"theme",
+      "showModeName":"Por Tema",
+      "metric":"opinion",
+      "metricName":"Opinión"
+   }
+]
