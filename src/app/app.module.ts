@@ -16,14 +16,16 @@ import { GraphComponent } from './elements/graph/graph.component';
 
 import 'd3';
 import 'nvd3';
-import 'moment'
+import 'moment';
+import { CreditsComponent } from './elements/credits/credits.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    GraphComponent
+    GraphComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,
