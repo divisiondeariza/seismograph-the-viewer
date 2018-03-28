@@ -17,7 +17,8 @@ import { GraphComponent } from './elements/graph/graph.component';
 import 'd3';
 import 'nvd3';
 import 'moment';
-import { CreditsComponent } from './elements/credits/credits.component'
+import { CreditsComponent } from './elements/credits/credits.component';
+import { SelectPanelComponent } from './select-panel/select-panel.component'
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CreditsComponent } from './elements/credits/credits.component'
     AppComponent,
     MainComponent,
     GraphComponent,
-    CreditsComponent
+    CreditsComponent,
+    SelectPanelComponent
   ],
   imports: [
     BrowserModule,
