@@ -1,12 +1,25 @@
 h1{
 	width: 100%;
 	text-align: center;
+
+
+}
+
+@media(max-width: 576px) { 
+	h1{
+		font-size: 7vw;
+	}
 }
 
 ng-select{
-	margin:10px;
+	margin-top:10px;
+
+
 }
 
-#modes-select{
-	width: 100%
+
+
+.container-fluid{
+	/*padding: ;*/
+	max-width: 650px;
 }

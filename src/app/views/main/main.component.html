@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<h1>
 			SISMÓGRAFO ELECTORAL
@@ -17,32 +17,38 @@
 			</ng-select>
 		</div>
 		<div class="col-sm-4">
-			<ng-select 
-				id="candidates-select"
-				[items] = "candidates"
-				bindLabel="name"
-				bindValue="id"
-			    [multiple]="showBy != 'candidate'"
-			    [maxSelectedItems]="4"
-			    (change)="changeCandidates($event)"
-				>
-				<ng-template ng-label-tmp ng-option-tmp let-item="item">
-			        <img height="15" width="15" [src]="'assets/candidates_pics/' + item.id + '_j.jpg'"/>
-			        {{item.name}}
-			    </ng-template>
-			</ng-select>
-
-			<ng-select 
-				id="viz-categories-select"
-				[items] = "vizCategories"
-				bindLabel="name"
-				bindValue="id"
-			    [multiple]="showBy != 'theme'"
-			    [maxSelectedItems]="4"
-			    (change)="changeThemes($event)"
-				>
-			</ng-select>
+			<div class="row">
+				<div class="col-6 col-sm-12">
+					<ng-select 
+						id="candidates-select"
+						[items] = "candidates"
+						bindLabel="name"
+						bindValue="id"
+					    [multiple]="showBy != 'candidate'"
+					    [maxSelectedItems]="4"
+					    (change)="changeCandidates($event)"
+						>
+					</ng-select>						
+				</div>
+				<div class="col-6 col-sm-12">
+					<ng-select 
+						id="viz-categories-select"
+						[items] = "vizCategories"
+						bindLabel="name"
+						bindValue="id"
+					    [multiple]="showBy != 'theme'"
+					    [maxSelectedItems]="4"
+					    (change)="changeThemes($event)"
+						>
+					</ng-select>					
+				</div>
+				
+			</div>
 		</div>
+
+
+
+	</div>
 
 
 
@@ -54,7 +60,6 @@
 
 				
 	    	></app-graph>		
-	</div>
 	<app-credits></app-credits>
 </div>
 
