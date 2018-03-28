@@ -9,6 +9,8 @@ import { GraphComponent } from './graph.component';
 import { TimeSerie } from '../../classes/time-serie';
 
 
+declare let d3: any;
+
 @Component({selector: 'nvd3', template: ''})
 class Nvd3StubComponent{
   @Input() data:TimeSerie[];
@@ -60,11 +62,11 @@ describe('GraphComponent', () => {
   });
 
   describe('nvd3 settings', ()=>{
-    // let chart:any;
+    let chart:any;
     let nvd3Comp: Nvd3StubComponent;
     beforeEach(()=>{
       nvd3Comp = fixture.debugElement.query(By.css('nvd3')).componentInstance
-      // chart = fixture.debugElement.query(By.css('nvd3')).componentInstance.options.chart
+      chart = nvd3Comp.options.chart
     });    
 
     it('should set correctly timeseries', () =>{
@@ -76,6 +78,21 @@ describe('GraphComponent', () => {
       expect(getSeriesSpy).toHaveBeenCalledTimes(1);
       expect(getSeriesSpy).toHaveBeenCalledWith(rawData, 'metric1', ['candidate1'],  ['theme1', 'theme2'], 'candidate');
       expect(nvd3Comp.data).toEqual(timeSeries);    
+    });
+
+    it('Should basic data', () =>{
+      expect(chart.height).toEqual(450);
+      expect(chart.type).toEqual('lineChart');
+      expect(chart.useInteractiveGuideline).toBeTruthy();
+      expect(chart.xAxis.axisLabel).toEqual("fecha");
+      expect(chart.xAxis.rotateLabels).toEqual(-15);
+    });
+
+    it('Should set tickFormats correctly', ()=>{
+      expect(d3.format('.02f')(Math.PI)).toEqual(chart.yAxis.tickFormat(Math.PI));
+      expect("22 de noviembre de 1989").toEqual(chart.xAxis.tickFormat('1989-11-22'));
+
     })
+
   });
 });

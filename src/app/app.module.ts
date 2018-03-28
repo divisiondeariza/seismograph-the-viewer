@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
+import { NvD3Module } from 'ng2-nvd3';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './views/main/main.component';
@@ -10,6 +11,10 @@ import { CandidatesService } from './services/candidates/candidates.service';
 import { VizCategoriesService } from './services/viz-categories/viz-categories.service';
 import { ModesService } from './services/modes/modes.service';
 import { GraphComponent } from './elements/graph/graph.component';
+
+import 'd3';
+import 'nvd3';
+import 'moment'
 
 
 @NgModule({

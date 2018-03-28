@@ -1,7 +1,10 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { TimeSeriesService } from '../../services/time-series/time-series.service';
 import { TimeSerie } from '../../classes/time-serie';
-
+import { NvD3Module } from 'ng2-nvd3';
+import 'd3';
+import * as moment from 'moment';
+declare let d3: any;
 
 @Component({
   selector: 'app-graph',
@@ -21,8 +24,27 @@ export class GraphComponent implements OnInit{
   	) { }
 
   ngOnInit() {
+    moment.locale("es");
+    
   	this.timeSeriesService.getData()
   		.subscribe((data) => this.rawData = data);
+
+
+    this.options = {
+      chart: {
+        type: 'lineChart',
+        height: 450,
+        useInteractiveGuideline: true,
+        xAxis: {
+          axisLabel: 'fecha',
+          tickFormat: d => moment(d).format("D [de] MMMM [de] YYYY"),
+          rotateLabels: -15,
+        },
+        yAxis: {
+          tickFormat: d => d3.format('.02f')(d),
+        }
+      }
+    }
   }
 
   ngDoCheck(){
