@@ -1,44 +1,58 @@
-<ng-select 
-	id="candidates-select"
-	[items] = "candidates"
-	bindLabel="name"
-	bindValue="id"
-    [multiple]="showBy != 'candidate'"
-    [maxSelectedItems]="4"
-    (change)="changeCandidates($event)"
-	>
-	<ng-template ng-label-tmp ng-option-tmp let-item="item">
-        <img height="15" width="15" [src]="'assets/candidates_pics/' + item.id + '_j.jpg'"/>
-        {{item.name}}
-    </ng-template>
-</ng-select>
+<div class="container">
+	<div class="row">
+		<h1>
+			SISMÓGRAFO ELECTORAL
+		</h1>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<ng-select 
+				id="modes-select"
+				[items] = "modes"
+				bindLabel="metricName"
+				bindValue="id"
+				groupBy="showModeName"
+				(change)="changeMode($event)"
+				>
+			</ng-select>
+		</div>
+		<div class="col-sm-4">
+			<ng-select 
+				id="candidates-select"
+				[items] = "candidates"
+				bindLabel="name"
+				bindValue="id"
+			    [multiple]="showBy != 'candidate'"
+			    [maxSelectedItems]="4"
+			    (change)="changeCandidates($event)"
+				>
+				<ng-template ng-label-tmp ng-option-tmp let-item="item">
+			        <img height="15" width="15" [src]="'assets/candidates_pics/' + item.id + '_j.jpg'"/>
+			        {{item.name}}
+			    </ng-template>
+			</ng-select>
 
-<ng-select 
-	id="viz-categories-select"
-	[items] = "vizCategories"
-	bindLabel="name"
-	bindValue="id"
-    [multiple]="showBy != 'theme'"
-    [maxSelectedItems]="4"
-    (change)="changeThemes($event)"
-	>
-</ng-select>
-
-<ng-select 
-	id="modes-select"
-	[items] = "modes"
-	bindLabel="metricName"
-	bindValue="id"
-	groupBy="showModeName"
-	(change)="changeMode($event)"
-	>
-</ng-select>
-
-<app-graph [showBy]="showBy"
-		   [metric]="metric"
-		   [candidates]="selectedCandidatesIds"
-		   [themes]="selectedThemesIds"
+			<ng-select 
+				id="viz-categories-select"
+				[items] = "vizCategories"
+				bindLabel="name"
+				bindValue="id"
+			    [multiple]="showBy != 'theme'"
+			    [maxSelectedItems]="4"
+			    (change)="changeThemes($event)"
+				>
+			</ng-select>
+		</div>
 
 
-			
-			></app-graph>
+
+		<app-graph [showBy]="showBy"
+				   [metric]="metric"
+				   [candidates]="selectedCandidatesIds"
+				   [themes]="selectedThemesIds"
+
+
+				
+	    	></app-graph>		
+	</div>
+</div>

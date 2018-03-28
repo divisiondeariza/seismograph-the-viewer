@@ -1,0 +1,12 @@
+h1{
+	width: 100%;
+	text-align: center;
+}
+
+ng-select{
+	margin:10px;
+}
+
+#modes-select{
+	width: 100%
+}
