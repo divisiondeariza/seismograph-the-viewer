@@ -7,7 +7,8 @@ import { By } from '@angular/platform-browser';
 
 import { GraphComponent } from './graph.component';
 import { TimeSerie } from '../../classes/time-serie';
-
+import { VizCategory } from '../../classes/viz-category';
+import { Candidate } from '../../classes/candidate';
 
 declare let d3: any;
 
@@ -26,6 +27,8 @@ describe('GraphComponent', () => {
   let timeSeriesService: any;
   let getDataSpy: jasmine.Spy;
   let getSeriesSpy: jasmine.Spy;
+  let candidates: Candidate[];
+  let vizCategories: VizCategory[];
 
   beforeEach(async(() => {
     rawData = {'some':{'data':{'from':'server'}}};
@@ -36,6 +39,11 @@ describe('GraphComponent', () => {
                       ],
                      'key': 'theme1'
                     },]
+    candidates = [{ id: 'candidate1', name: 'Candidate One', color:"#fff" }, 
+                  { id: 'candidate2', name: 'Candidate Two', color:"#888" }];
+    vizCategories = [{ id: 'theme1', name: 'Theme One', children: [] },
+                     { id: 'theme2', name: 'Theme Two', children: [] } ]
+
     timeSeriesService = jasmine.createSpyObj('TimeSeriesService',['getSeries', 'getData'])
     getSeriesSpy = timeSeriesService.getSeries.and.returnValue(timeSeries);
     getDataSpy = timeSeriesService.getData.and.returnValue(of(rawData));
@@ -72,12 +80,12 @@ describe('GraphComponent', () => {
     it('should set correctly timeseries', () =>{
       component.showBy = 'candidate';
       component.metric = 'metric1';
-      component.candidates = ['candidate1'];
-      component.themes = ['theme1', 'theme2']
+      component.candidates = [candidates[0]];
+      component.themes = vizCategories;
       component.ngOnChanges();
       fixture.detectChanges();
       expect(getSeriesSpy).toHaveBeenCalledTimes(1);
-      expect(getSeriesSpy).toHaveBeenCalledWith(rawData, 'metric1', ['candidate1'],  ['theme1', 'theme2'], 'candidate');
+      expect(getSeriesSpy).toHaveBeenCalledWith(rawData, 'metric1', [candidates[0]],  vizCategories, 'candidate');
       expect(nvd3Comp.data).toEqual(timeSeries);    
     });
 

@@ -17,10 +17,10 @@ export class MainComponent implements OnInit {
   public candidates: Candidate[];
   public vizCategories: VizCategory[];
   public modes: Mode[];
-  public showBy: String;
-  public metric: String;
-  public selectedCandidatesIds: String[];
-  public selectedThemesIds: String[];
+  public showBy: string;
+  public metric: string;
+  public selectedCandidatesIds: Candidate[];
+  public selectedThemesIds: VizCategory[];
 
   constructor(private candidatesService: CandidatesService,
               private vizCategoriesServices: VizCategoriesService,
@@ -47,11 +47,11 @@ export class MainComponent implements OnInit {
   }
 
   changeCandidates($event){
-    this.selectedCandidatesIds = ($event instanceof Array)?$event.map((candidate)=>(candidate.id)):[ $event.id ];
+    this.selectedCandidatesIds = ($event instanceof Array)?$event:[ $event ];
   }
 
   changeThemes($event){
-    this.selectedThemesIds = ($event instanceof Array)?$event.map((theme)=>(theme.id)):[ $event.id ];
+    this.selectedThemesIds = ($event instanceof Array)?$event:[ $event ];
   }
 
 }

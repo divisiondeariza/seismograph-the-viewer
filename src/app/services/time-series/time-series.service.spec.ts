@@ -4,12 +4,16 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { TimeSeriesService } from './time-series.service';
 import { TimeSerie } from '../../classes/time-serie';
+import { VizCategory } from '../../classes/viz-category';
+import { Candidate } from '../../classes/candidate';
 
 describe('TimeSeriesService', () => {
 
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let expectedData: any;
+  let candidates: Candidate[];
+  let vizCategories: VizCategory[];
 
   beforeEach(() => {
 	expectedData = {
@@ -30,6 +34,11 @@ describe('TimeSeriesService', () => {
 	  		}
 	  	}
 	  }
+
+    candidates = [{ id: 'candidate1', name: 'Candidate One', color:"#fff" }, 
+                  { id: 'candidate2', name: 'Candidate Two', color:"#888" }];
+    vizCategories = [{ id: 'theme1', name: 'Theme One', children: [] },
+                     { id: 'theme2', name: 'Theme Two', children: [] } ]
 
 
     TestBed.configureTestingModule({
@@ -61,20 +70,20 @@ describe('TimeSeriesService', () => {
   			{'y': 0, 'x': new Date('2018-01-01')},
   			{'y': 0.5, 'x': new Date('2018-01-02')}
   			],
-  		 'key': 'theme1'
+  		 'key': 'Theme One'
   		},
   		{'values':[
   			{'y': 2, 'x': new Date('2018-01-01')},
   			{'y': 2.5, 'x': new Date('2018-01-02')}
   			],
-  		 'key': 'theme2'
+  		 'key': 'Theme Two'
   		}
   	]
 
   	expect(service.getSeries(expectedData, 
                             'metric1', 
-                            ['candidate1'],  
-                            ['theme1', 'theme2'],
+                            [candidates[0]],  
+                            vizCategories,
                             'candidate'))
   		.toEqual(expectedSeries);
   }));
@@ -86,20 +95,20 @@ describe('TimeSeriesService', () => {
   			{'y': 0, 'x': new Date('2018-01-01')},
   			{'y': 0.5, 'x': new Date('2018-01-02')}
   			],
-  		 'key': 'candidate1'
+  		 'key': 'Candidate One'
   		},
   		{'values':[
   			{'y': 1, 'x': new Date('2018-01-01')},
   			{'y': 1.5, 'x': new Date('2018-01-02')}
   			],
-  		 'key': 'candidate2'
+  		 'key': 'Candidate Two'
   		}
   	]
 
     expect(service.getSeries(expectedData, 
                             'metric1', 
-                            ['candidate1', 'candidate2'],  
-                            ['theme1'],
+                            candidates,  
+                            [vizCategories[0]],
                             'theme'))
   		.toEqual(expectedSeries);
   }));

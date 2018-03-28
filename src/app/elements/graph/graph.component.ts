@@ -2,6 +2,10 @@ import { Component, OnInit, Input, DoCheck, OnChanges } from '@angular/core';
 import { TimeSeriesService } from '../../services/time-series/time-series.service';
 import { TimeSerie } from '../../classes/time-serie';
 import { NvD3Module } from 'ng2-nvd3';
+
+import { VizCategory } from '../../classes/viz-category';
+import { Candidate } from '../../classes/candidate';
+
 import 'd3';
 import * as moment from 'moment';
 declare let d3: any;
@@ -14,8 +18,8 @@ declare let d3: any;
 export class GraphComponent implements OnInit, OnChanges{
   @Input() showBy: string;
   @Input() metric: string;
-  @Input() candidates: string[];
-  @Input() themes: string[];
+  @Input() candidates: Candidate[];
+  @Input() themes: VizCategory[];
   public rawData: any;
   public options: any;
   public timeSeries: TimeSerie[];

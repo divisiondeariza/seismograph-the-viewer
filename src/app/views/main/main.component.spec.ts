@@ -17,7 +17,11 @@ class NgSelectStubComponent {
   @Input() items: any;
   @Input() multiple: boolean
   @Input() maxSelectedItems: boolean
-  @Output() change = new EventEmitter()
+  @Output() change = new EventEmitter();
+
+  @Input() ngModel: any
+
+
 
 }
 
@@ -87,9 +91,6 @@ describe('MainComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 
   describe('setting candidates select', ()=>{
     let candidatesEl: DebugElement;
@@ -190,6 +191,14 @@ describe('MainComponent', () => {
       graphEl = fixture.debugElement.query(By.css('app-graph'));
     });    
 
+    xit('should set default values as the first value of each selection array', ()=>{
+      expect(modesEl.componentInstance.ngModel).toEqual({   id: 'candidate-metric',
+                                                            showMode:"Candidate",
+                                                            showModeName:"candidate",
+                                                            metric:"metric",
+                                                            metricName:"Metric"  }   )
+    });
+
     it('should connect graphEl with data from selectors - show by candidate case', ()=>{
       modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
                                                 showMode:"candidate",
@@ -201,8 +210,8 @@ describe('MainComponent', () => {
       fixture.detectChanges();
       expect(graphEl.componentInstance.showBy).toEqual('candidate');
       expect(graphEl.componentInstance.metric).toEqual('metric2');
-      expect(graphEl.componentInstance.candidates).toEqual([ 'two' ]);
-      expect(graphEl.componentInstance.themes).toEqual(['one-a']);
+      expect(graphEl.componentInstance.candidates).toEqual([ { id: 'two', name: 'Candidate Two', color:"#888" } ]);
+      expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
 
     });
 
@@ -217,8 +226,8 @@ describe('MainComponent', () => {
       fixture.detectChanges();
       expect(graphEl.componentInstance.showBy).toEqual('theme');
       expect(graphEl.componentInstance.metric).toEqual('metric2');
-      expect(graphEl.componentInstance.candidates).toEqual([ 'two' ]);
-      expect(graphEl.componentInstance.themes).toEqual(['one-a']);
+      expect(graphEl.componentInstance.candidates).toEqual([ { id: 'two', name: 'Candidate Two', color:"#888" } ]);
+      expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
 
     })
   })
