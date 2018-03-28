@@ -9,9 +9,8 @@
 			<ng-select 
 				id="modes-select"
 				[items] = "modes"
-				bindLabel="metricName"
+				bindLabel="name"
 				bindValue="id"
-				groupBy="showModeName"
 				(change)="changeMode($event)"
 				>
 			</ng-select>

@@ -30,12 +30,12 @@ describe('ModesService', () => {
 			    showMode:"Candidate",
 			    showModeName:"candidate",
 			    metric:"metric",
-			    metricName:"Metric"	}, 		    
+			    name: "Metric"	}, 		    
 			{   id: 'theme-metric',
 			    showMode:"Theme",
 			    showModeName:"theme",
 			    metric:"metric",
-			    metricName:"Metric"	}, 
+			    name:"Metric"	}, 
 		    ];
 	  service.getModes()
 	  		.subscribe(modes => expect(modes).toEqual(expectedModes))

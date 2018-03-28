@@ -3,5 +3,5 @@ export class Mode {
 	showMode: String;
 	showModeName: String;
 	metric: String;
-	metricName: String
+	name: String
 }

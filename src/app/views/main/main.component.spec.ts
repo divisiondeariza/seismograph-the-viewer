@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 
 
 import { MainComponent } from './main.component';
+import { CreditsComponent } from '../../elements/credits/credits.component'
 import { CandidatesService } from '../../services/candidates/candidates.service';
 import { Candidate } from '../../classes/candidate';
 import { ModesService } from '../../services/modes/modes.service';
@@ -61,12 +62,12 @@ describe('MainComponent', () => {
                     showMode:"Candidate",
                     showModeName:"candidate",
                     metric:"metric",
-                    metricName:"Metric"  },         
+                    name:"Metric"  },         
                 {   id: 'theme-metric',
                     showMode:"Theme",
                     showModeName:"theme",
                     metric:"metric",
-                    metricName:"Metric"  }, 
+                    name:"Metric"  }, 
                   ];
     const modesService = jasmine.createSpyObj('VizModes', ['getModes'])
     getVizCategoriesSpy = modesService.getModes.and.returnValue(of(modes));                    
@@ -75,7 +76,8 @@ describe('MainComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ MainComponent,
                       NgSelectStubComponent,
-                      GraphComponent],
+                      GraphComponent,
+                      CreditsComponent],
       providers: [
         { provide:  VizCategoriesService, useValue: vizCategoriesService },
         { provide:  CandidatesService, useValue: candidatesService },
@@ -161,9 +163,8 @@ describe('MainComponent', () => {
     });
 
     it('should configure correctly the ng-selec attributes', ()=>{
-      expect(modesEl.attributes.bindLabel).toEqual("metricName");
+      expect(modesEl.attributes.bindLabel).toEqual("name");
       expect(modesEl.attributes.bindValue).toEqual("id");
-      expect(modesEl.attributes.groupBy).toEqual("showModeName");
 
     });
 
@@ -172,7 +173,7 @@ describe('MainComponent', () => {
                                                 showMode:"candidate",
                                                 showModeName:"Candidate",
                                                 metric:"metric",
-                                                metricName:"Metric"  } );
+                                                name:"Metric"  } );
       expect(component.showBy).toEqual('candidate');
     })
 
