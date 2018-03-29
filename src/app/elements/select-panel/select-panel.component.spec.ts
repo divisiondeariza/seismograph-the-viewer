@@ -19,7 +19,7 @@ class NgSelectStubComponent {
   @Input() maxSelectedItems: boolean
   @Output() change = new EventEmitter();
 
-  @Input() ngModel: any
+  @Input() ngModel: any;
 
 }
 
@@ -81,6 +81,29 @@ describe('SelectPanelComponent', () => {
   });
 
 
+  describe('Setting defaults', ()=>{
+    let modesEl: DebugElement;
+    let vizCategoriesEl: DebugElement;
+    let candidatesEl: DebugElement;
+
+
+    beforeEach(() =>{
+      modesEl = fixture.debugElement.query(By.css('#modes-select'));
+      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
+      candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
+    });    
+
+    // it('should set mode default as the first element', ()=>{
+    //   expect(modesEl.componentInstance.ngModel).toEqual(modes[0]);
+    // });
+
+    // it('should set candidate default element when multiple==false', ()=>{
+    //   candidatesEl.componentInstance.multiple = false;
+    //   expect(candidatesEl.componentInstance.ngModel).toEqual(candidates[0]);
+    // });
+
+  })
+
   describe('setting candidates select', ()=>{
     let candidatesEl: DebugElement;
 
@@ -93,10 +116,10 @@ describe('SelectPanelComponent', () => {
 
     it('should configure correctly the ng-selec attributes', ()=>{
       expect(candidatesEl.attributes.bindLabel).toEqual("name");
-      expect(candidatesEl.attributes.bindValue).toEqual("id");
       expect(candidatesEl.componentInstance.maxSelectedItems).toEqual(4);
 
     });
+
 
     it("should set isMultiple true only when showBy != 'candidate' ", ()=>{
       component.showBy = 'candidate';
@@ -141,7 +164,6 @@ describe('SelectPanelComponent', () => {
 
     it('should configure correctly the ng-selec attributes', ()=>{
       expect(vizCategoriesEl.attributes.bindLabel).toEqual("name");
-      expect(vizCategoriesEl.attributes.bindValue).toEqual("id");
       expect(vizCategoriesEl.componentInstance.maxSelectedItems).toEqual(4);
 
     })
@@ -189,7 +211,6 @@ describe('SelectPanelComponent', () => {
 
     it('should configure correctly the ng-selec attributes', ()=>{
       expect(modesEl.attributes.bindLabel).toEqual("name");
-      expect(modesEl.attributes.bindValue).toEqual("id");
 
     });
     
@@ -217,6 +238,5 @@ describe('SelectPanelComponent', () => {
     })
 
   });
-
 
 });

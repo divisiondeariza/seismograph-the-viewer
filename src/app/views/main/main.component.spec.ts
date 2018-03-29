@@ -59,14 +59,6 @@ describe('MainComponent', () => {
       graphEl = fixture.debugElement.query(By.css('app-graph'));
     });    
 
-    // xit('should set default values as the first value of each selection array', ()=>{
-    //   expect(modesEl.componentInstance.ngModel).toEqual({   id: 'candidate-metric',
-    //                                                         showMode:"Candidate",
-    //                                                         showModeName:"candidate",
-    //                                                         metric:"metric",
-    //                                                         metricName:"Metric"  }   )
-    // });
-
     it('should update graphEl when a mode is emited from selectPanel', ()=>{
       selectPanelEl.componentInstance.modeChange.emit( {  id: 'candidate-metric',
                                                           showMode:"candidate",
@@ -80,18 +72,13 @@ describe('MainComponent', () => {
     });
 
     it('should update graphEl when a candidates are emited from selectPanel', ()=>{
-
       selectPanelEl.componentInstance.candidatesChange.emit([{ id: 'two', name: 'Candidate Two', color:"#888" }])
-      // selectPanelEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
       fixture.detectChanges();
       expect(graphEl.componentInstance.candidates).toEqual([ { id: 'two', name: 'Candidate Two', color:"#888" } ]);
-      // expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
-
     });
 
 
     it('should update graphEl when themes are emited from selectPanel', ()=>{
-
       selectPanelEl.componentInstance.themesChange.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
       fixture.detectChanges();
       expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);

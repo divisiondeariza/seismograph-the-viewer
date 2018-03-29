@@ -4,6 +4,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 import { NvD3Module } from 'ng2-nvd3';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './views/main/main.component';
@@ -34,7 +35,8 @@ import { SelectPanelComponent } from './elements/select-panel/select-panel.compo
     AppRoutingModule,
     HttpClientModule,
     NgSelectModule,
-    NvD3Module
+    NvD3Module,
+    FormsModule
   ],
   providers: [CandidatesService,
               VizCategoriesService,

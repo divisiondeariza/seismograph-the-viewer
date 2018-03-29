@@ -25,6 +25,9 @@ export class SelectPanelComponent implements OnInit {
   public allVizCategories: VizCategory[];
   public modes: Mode[];
 
+  public mode: Mode;
+  public candidates: any;
+
 
 
   constructor(private candidatesService: CandidatesService,
@@ -34,15 +37,23 @@ export class SelectPanelComponent implements OnInit {
 
   ngOnInit() {
   	  this.candidatesService.getCandidates().subscribe(
-  		  candidates => this.allCandidates = candidates
+  		  candidates => {
+          this.allCandidates = candidates
+        }
       )
       
       this.vizCategoriesServices.getVizCategories().subscribe(
         vizCategories => this.allVizCategories = vizCategories
       )      
       this.modesServices.getModes().subscribe(
-        modes => this.modes = modes
+        modes => {
+          this.modes = modes;
+          this.mode = this.modes[0];
+        }
+
       )
+
+
 
   }
 

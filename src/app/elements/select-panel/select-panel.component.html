@@ -4,8 +4,8 @@
 				id="modes-select"
 				[items] = "modes"
 				bindLabel="name"
-				bindValue="id"
 				(change)="changeMode($event)"
+				[ngModel]="mode"
 				>
 			</ng-select>
 		</div>
@@ -16,7 +16,6 @@
 						id="candidates-select"
 						[items] = "allCandidates"
 						bindLabel="name"
-						bindValue="id"
 					    [multiple]="showBy != 'candidate'"
 					    [maxSelectedItems]="4"
 					    (change)="changeCandidates($event)"
@@ -28,7 +27,6 @@
 						id="viz-categories-select"
 						[items] = "allVizCategories"
 						bindLabel="name"
-						bindValue="id"
 					    [multiple]="showBy != 'theme'"
 					    [maxSelectedItems]="4"
 					    (change)="changeThemes($event)"
@@ -38,7 +36,4 @@
 				
 			</div>
 		</div>
-
-
-
-	</div>
+</div>
