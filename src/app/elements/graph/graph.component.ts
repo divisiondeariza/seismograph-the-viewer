@@ -5,6 +5,7 @@ import { NvD3Module } from 'ng2-nvd3';
 
 import { VizCategory } from '../../classes/viz-category';
 import { Candidate } from '../../classes/candidate';
+import { Mode } from '../../classes/mode';
 
 import 'd3';
 import * as moment from 'moment';
@@ -16,10 +17,9 @@ declare let d3: any;
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit, OnChanges{
-  @Input() showBy: string;
-  @Input() metric: string;
   @Input() candidates: Candidate[];
   @Input() themes: VizCategory[];
+  @Input() mode: Mode;
   public rawData: any;
   public options: any;
   public timeSeries: TimeSerie[];
@@ -53,7 +53,7 @@ export class GraphComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(){
-      this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.metric, this.candidates, this.themes, this.showBy);
+      this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.mode, this.candidates, this.themes);
   }
 
 }

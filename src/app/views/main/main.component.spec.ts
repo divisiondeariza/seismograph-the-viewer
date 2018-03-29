@@ -22,10 +22,9 @@ class SelectPanelStubComponent {
 
 @Component({selector: 'app-graph', template: ''})
 class GraphComponent {
-  @Input() showBy: string;
-  @Input() metric: string;
-  @Input() candidates: string[];
-  @Input() themes: string[];
+  @Input() candidates: Candidate[];
+  @Input() themes: VizCategory[];
+  @Input() mode: Mode;
 
 }
 
@@ -66,8 +65,11 @@ describe('MainComponent', () => {
                                                           metric:"metric2",
                                                           metricName:"Metric"  } );
       fixture.detectChanges();
-      expect(graphEl.componentInstance.showBy).toEqual('candidate');
-      expect(graphEl.componentInstance.metric).toEqual('metric2');
+      expect(graphEl.componentInstance.mode).toEqual({  id: 'candidate-metric',
+                                                          showMode:"candidate",
+                                                          showModeName:"Candidate",
+                                                          metric:"metric2",
+                                                          metricName:"Metric"  } );
 
     });
 

@@ -6,6 +6,7 @@ import { TimeSeriesService } from './time-series.service';
 import { TimeSerie } from '../../classes/time-serie';
 import { VizCategory } from '../../classes/viz-category';
 import { Candidate } from '../../classes/candidate';
+import { Mode } from '../../classes/mode';
 
 describe('TimeSeriesService', () => {
 
@@ -14,6 +15,7 @@ describe('TimeSeriesService', () => {
   let expectedData: any;
   let candidates: Candidate[];
   let vizCategories: VizCategory[];
+  let modes: Mode[];
 
   beforeEach(() => {
 	expectedData = {
@@ -41,6 +43,18 @@ describe('TimeSeriesService', () => {
                      { id: 'theme2', name: 'Theme Two', children: [] } ]
 
 
+    modes =  [
+                {   id: 'candidate-metric',
+                    showMode:"candidate",
+                    showModeName:"Candidate",
+                    metric:"metric1",
+                    name:"Metric"  },         
+                {   id: 'theme-metric',
+                    showMode:"theme",
+                    showModeName:"Theme",
+                    metric:"metric1",
+                    name:"Metric"  }, 
+                  ];
     TestBed.configureTestingModule({
       providers: [TimeSeriesService],
       imports: [
@@ -81,10 +95,9 @@ describe('TimeSeriesService', () => {
   	]
 
   	expect(service.getSeries(expectedData, 
-                            'metric1', 
+                             modes[0],
                             [candidates[0]],  
-                            vizCategories,
-                            'candidate'))
+                            vizCategories))
   		.toEqual(expectedSeries);
   }));
 
@@ -106,10 +119,9 @@ describe('TimeSeriesService', () => {
   	]
 
     expect(service.getSeries(expectedData, 
-                            'metric1', 
+                            modes[1],
                             candidates,  
-                            [vizCategories[0]],
-                            'theme'))
+                            [vizCategories[0]]))
   		.toEqual(expectedSeries);
   }));
 

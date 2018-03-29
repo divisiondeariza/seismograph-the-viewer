@@ -9,6 +9,8 @@ import { GraphComponent } from './graph.component';
 import { TimeSerie } from '../../classes/time-serie';
 import { VizCategory } from '../../classes/viz-category';
 import { Candidate } from '../../classes/candidate';
+import { Mode } from '../../classes/mode';
+
 
 declare let d3: any;
 
@@ -29,6 +31,8 @@ describe('GraphComponent', () => {
   let getSeriesSpy: jasmine.Spy;
   let candidates: Candidate[];
   let vizCategories: VizCategory[];
+  let modes: Mode[];
+
 
   beforeEach(async(() => {
     rawData = {'some':{'data':{'from':'server'}}};
@@ -43,6 +47,18 @@ describe('GraphComponent', () => {
                   { id: 'candidate2', name: 'Candidate Two', color:"#888" }];
     vizCategories = [{ id: 'theme1', name: 'Theme One', children: [] },
                      { id: 'theme2', name: 'Theme Two', children: [] } ]
+    modes =  [
+                {   id: 'candidate-metric',
+                    showMode:"candidate",
+                    showModeName:"Candidate",
+                    metric:"metric1",
+                    name:"Metric"  },         
+                {   id: 'theme-metric',
+                    showMode:"theme",
+                    showModeName:"Theme",
+                    metric:"metric1",
+                    name:"Metric"  }, 
+                  ];
 
     timeSeriesService = jasmine.createSpyObj('TimeSeriesService',['getSeries', 'getData'])
     getSeriesSpy = timeSeriesService.getSeries.and.returnValue(timeSeries);
@@ -78,14 +94,13 @@ describe('GraphComponent', () => {
     });    
 
     it('should set correctly timeseries', () =>{
-      component.showBy = 'candidate';
-      component.metric = 'metric1';
+      component.mode = modes[0]
       component.candidates = [candidates[0]];
       component.themes = vizCategories;
       component.ngOnChanges();
       fixture.detectChanges();
       expect(getSeriesSpy).toHaveBeenCalledTimes(1);
-      expect(getSeriesSpy).toHaveBeenCalledWith(rawData, 'metric1', [candidates[0]],  vizCategories, 'candidate');
+      expect(getSeriesSpy).toHaveBeenCalledWith(rawData, modes[0], [candidates[0]],  vizCategories);
       expect(nvd3Comp.data).toEqual(timeSeries);    
     });
 

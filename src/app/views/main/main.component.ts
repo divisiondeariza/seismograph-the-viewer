@@ -17,10 +17,9 @@ export class MainComponent implements OnInit {
   public candidates: Candidate[];
   public vizCategories: VizCategory[];
   public modes: Mode[];
-  public showBy: string;
-  public metric: string;
   public selectedCandidates: Candidate[];
   public selectedThemesIds: VizCategory[];
+  public selectedMode: Mode;
 
 
   constructor(     ) { }
@@ -30,8 +29,7 @@ export class MainComponent implements OnInit {
   }
 
   changeMode($event){
-    this.showBy =  $event.showMode;
-    this.metric = $event.metric;
+    this.selectedMode = $event;
   }
 
   changeCandidates($event){
