@@ -19,25 +19,13 @@ export class MainComponent implements OnInit {
   public modes: Mode[];
   public showBy: string;
   public metric: string;
-  public selectedCandidatesIds: Candidate[];
+  public selectedCandidates: Candidate[];
   public selectedThemesIds: VizCategory[];
 
-  constructor(private candidatesService: CandidatesService,
-              private vizCategoriesServices: VizCategoriesService,
-  			      private modesServices: ModesService,
-              ) { }
+
+  constructor(     ) { }
 
   ngOnInit() {
-  	  this.candidatesService.getCandidates().subscribe(
-  		  candidates => this.candidates = candidates
-      )
-      
-      this.vizCategoriesServices.getVizCategories().subscribe(
-        vizCategories => this.vizCategories = vizCategories
-      )      
-      this.modesServices.getModes().subscribe(
-        modes => this.modes = modes
-      )
 
   }
 
@@ -47,11 +35,11 @@ export class MainComponent implements OnInit {
   }
 
   changeCandidates($event){
-    this.selectedCandidatesIds = ($event instanceof Array)?$event:[ $event ];
+    this.selectedCandidates = $event;
   }
 
   changeThemes($event){
-    this.selectedThemesIds = ($event instanceof Array)?$event:[ $event ];
+    this.selectedThemesIds = $event;
   }
 
 }

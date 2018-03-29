@@ -108,6 +108,13 @@ describe('SelectPanelComponent', () => {
 
     })
 
+    it('should emit when selector emits', ()=>{
+      spyOn(component.candidatesChange, 'emit');
+      candidatesEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+      fixture.detectChanges();     
+      expect(component.candidatesChange.emit).toHaveBeenCalled();
+    });
+
     it("should emit an array of themes when selector emits an array", ()=>{
       component.candidatesChange.subscribe((value)=> expect(value).toEqual([{ id: 'one', name: 'Candidate One', color:"#fff" }]))
       candidatesEl.componentInstance.change.emit([{ id: 'one', name: 'Candidate One', color:"#fff" }]);
@@ -149,6 +156,13 @@ describe('SelectPanelComponent', () => {
 
     });
 
+    it('should emit when selector emits', ()=>{
+      spyOn(component.themesChange, 'emit');
+      vizCategoriesEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+      fixture.detectChanges();     
+      expect(component.themesChange.emit).toHaveBeenCalled();
+    });
+
     it("should emit an array of themes when selector emits an array", ()=>{
       component.themesChange.subscribe((value)=> expect(value).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]))
       vizCategoriesEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
@@ -178,10 +192,20 @@ describe('SelectPanelComponent', () => {
       expect(modesEl.attributes.bindValue).toEqual("id");
 
     });
+    
+    it('should emit when selector emits', ()=>{
+      spyOn(component.modeChange, 'emit');
+      modesEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+      fixture.detectChanges();     
+      expect(component.modeChange.emit).toHaveBeenCalled();
+    });
 
     it('should set showBy correctly and emit showByChange and metricChange when change is emmited', ()=>{
-      component.showByChange.subscribe((value) => expect(value).toEqual('candidate'))
-      component.metricChange.subscribe((value) => expect(value).toEqual('metric'))
+      component.modeChange.subscribe((value) => expect(value).toEqual({ id: 'candidate-metric',
+                                                                        showMode:"candidate",
+                                                                        showModeName:"Candidate",
+                                                                        metric:"metric",
+                                                                        name:"Metric"  }))
       modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
                                                 showMode:"candidate",
                                                 showModeName:"Candidate",

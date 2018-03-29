@@ -4,56 +4,17 @@
 			SISMÓGRAFO ELECTORAL
 		</h1>
 	</div>
-	<div class="row">
-		<div class="col-sm-8">
-			<ng-select 
-				id="modes-select"
-				[items] = "modes"
-				bindLabel="name"
-				bindValue="id"
-				(change)="changeMode($event)"
-				>
-			</ng-select>
-		</div>
-		<div class="col-sm-4">
-			<div class="row">
-				<div class="col-6 col-sm-12">
-					<ng-select 
-						id="candidates-select"
-						[items] = "candidates"
-						bindLabel="name"
-						bindValue="id"
-					    [multiple]="showBy != 'candidate'"
-					    [maxSelectedItems]="4"
-					    (change)="changeCandidates($event)"
-						>
-					</ng-select>						
-				</div>
-				<div class="col-6 col-sm-12">
-					<ng-select 
-						id="viz-categories-select"
-						[items] = "vizCategories"
-						bindLabel="name"
-						bindValue="id"
-					    [multiple]="showBy != 'theme'"
-					    [maxSelectedItems]="4"
-					    (change)="changeThemes($event)"
-						>
-					</ng-select>					
-				</div>
-				
-			</div>
-		</div>
+	<app-select-panel (modeChange)="changeMode($event)"
+					  (candidatesChange)="changeCandidates($event)"
+					  (themesChange)="changeThemes($event)"
 
-
-
-	</div>
+					  ></app-select-panel>
 
 
 
 		<app-graph [showBy]="showBy"
 				   [metric]="metric"
-				   [candidates]="selectedCandidatesIds"
+				   [candidates]="selectedCandidates"
 				   [themes]="selectedThemesIds"
 
 

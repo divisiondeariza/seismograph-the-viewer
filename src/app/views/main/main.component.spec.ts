@@ -13,17 +13,11 @@ import { Mode } from '../../classes/mode';
 import { VizCategoriesService } from '../../services/viz-categories/viz-categories.service';
 import { VizCategory } from '../../classes/viz-category';
 
-@Component({selector: 'ng-select', template: ''})
-class NgSelectStubComponent {
-  @Input() items: any;
-  @Input() multiple: boolean
-  @Input() maxSelectedItems: boolean
-  @Output() change = new EventEmitter();
-
-  @Input() ngModel: any
-
-
-
+@Component({selector: 'app-select-panel', template: ''})
+class SelectPanelStubComponent {
+  @Output() candidatesChange = new EventEmitter<Candidate[]>();
+  @Output() themesChange = new EventEmitter<VizCategory[]>();
+  @Output() modeChange = new EventEmitter<Mode>();
 }
 
 @Component({selector: 'app-graph', template: ''})
@@ -38,51 +32,13 @@ class GraphComponent {
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
-  let candidates: Candidate[];
-  let getCandidatesSpy: jasmine.Spy;
-  let vizCategories:VizCategory[];
-  let getVizCategoriesSpy: jasmine.Spy;
-  let modes:Mode[];
-  let getModeSpy: jasmine.Spy;
 
   beforeEach(async(() => {
-    candidates = [{ id: 'one', name: 'Candidate One', color:"#fff" }, { id: 'two', name: 'Candidate Two', color:"#888" }];
-    const candidatesService = jasmine.createSpyObj('CandidatesService', ['getCandidates']);
-    getCandidatesSpy = candidatesService.getCandidates.and.returnValue(of(candidates));
-
-    vizCategories = [{ id: 'one', name: 'VizCategory One', children: [
-                    { id: 'one-a', name: 'VizCategory One a', children: []},
-                    { id: 'one-b', name: 'VizCategory One b', children: []},
-                    ] }]
-    const vizCategoriesService = jasmine.createSpyObj('VizCategoriesService', ['getVizCategories'])
-    getVizCategoriesSpy = vizCategoriesService.getVizCategories.and.returnValue(of(vizCategories));                    
-
-    modes =  [
-                {   id: 'candidate-metric',
-                    showMode:"Candidate",
-                    showModeName:"candidate",
-                    metric:"metric",
-                    name:"Metric"  },         
-                {   id: 'theme-metric',
-                    showMode:"Theme",
-                    showModeName:"theme",
-                    metric:"metric",
-                    name:"Metric"  }, 
-                  ];
-    const modesService = jasmine.createSpyObj('VizModes', ['getModes'])
-    getVizCategoriesSpy = modesService.getModes.and.returnValue(of(modes));                    
-
-
     TestBed.configureTestingModule({
       declarations: [ MainComponent,
-                      NgSelectStubComponent,
+                      SelectPanelStubComponent,
                       GraphComponent,
-                      CreditsComponent],
-      providers: [
-        { provide:  VizCategoriesService, useValue: vizCategoriesService },
-        { provide:  CandidatesService, useValue: candidatesService },
-        { provide:  ModesService, useValue: modesService }
-      ]
+                      CreditsComponent]
     })
     .compileComponents();
   }));
@@ -94,143 +50,53 @@ describe('MainComponent', () => {
   });
 
 
-  describe('setting candidates select', ()=>{
-    let candidatesEl: DebugElement;
-
-    beforeEach(() =>{
-      candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
-    });
-    it('Should set candidates correctly', ()=>{
-      expect(candidatesEl.componentInstance.items).toEqual(candidates);
-    });
-
-    it('should configure correctly the ng-selec attributes', ()=>{
-      expect(candidatesEl.attributes.bindLabel).toEqual("name");
-      expect(candidatesEl.attributes.bindValue).toEqual("id");
-      expect(candidatesEl.componentInstance.maxSelectedItems).toEqual(4);
-
-    });
-
-    it("should set isMultiple true only when showBy != 'candidate' ", ()=>{
-      component.showBy = 'candidate';
-      fixture.detectChanges();
-      expect(candidatesEl.componentInstance.multiple).toEqual(false);
-      component.showBy = 'theme';
-      fixture.detectChanges();
-      expect(candidatesEl.componentInstance.multiple).toEqual(true);
-
-    })
-  });
-
-
-  describe('setting vizCategories select', ()=>{
-    let vizCategoriesEl: DebugElement;
-
-    beforeEach(() =>{
-      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
-    });
-    it('Should set vizCategories correctly', ()=>{
-      expect(vizCategoriesEl.componentInstance.items).toEqual(vizCategories);
-    });
-
-    it('should configure correctly the ng-selec attributes', ()=>{
-      expect(vizCategoriesEl.attributes.bindLabel).toEqual("name");
-      expect(vizCategoriesEl.attributes.bindValue).toEqual("id");
-      expect(vizCategoriesEl.componentInstance.maxSelectedItems).toEqual(4);
-
-    })
-
-    it("should set isMultiple true only when showBy != 'theme' ", ()=>{
-      component.showBy = 'candidate';
-      fixture.detectChanges();
-      expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
-      component.showBy = 'theme';
-      fixture.detectChanges();
-      expect(vizCategoriesEl.componentInstance.multiple).toEqual(false);
-
-    })
-  });
-
-  describe('setting mode select', ()=>{
-    let modesEl: DebugElement;
-
-
-    beforeEach(() =>{
-      modesEl = fixture.debugElement.query(By.css('#modes-select'));
-    });
-    it('Should set modes correctly', ()=>{
-      expect(modesEl.componentInstance.items).toEqual(modes);
-    });
-
-    it('should configure correctly the ng-selec attributes', ()=>{
-      expect(modesEl.attributes.bindLabel).toEqual("name");
-      expect(modesEl.attributes.bindValue).toEqual("id");
-
-    });
-
-    it('should set showBy correctly when change isn emmited', ()=>{
-      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
-                                                showMode:"candidate",
-                                                showModeName:"Candidate",
-                                                metric:"metric",
-                                                name:"Metric"  } );
-      expect(component.showBy).toEqual('candidate');
-    })
-
-  });
-
   describe('setting graph component', ()=>{
-    let modesEl: DebugElement;
-    let vizCategoriesEl: DebugElement;
-    let candidatesEl: DebugElement;
+    let selectPanelEl: DebugElement;
     let graphEl: DebugElement;
 
     beforeEach(() =>{
-      vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
-      candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
-      modesEl = fixture.debugElement.query(By.css('#modes-select'));
+      selectPanelEl = fixture.debugElement.query(By.css('app-select-panel'));
       graphEl = fixture.debugElement.query(By.css('app-graph'));
     });    
 
-    xit('should set default values as the first value of each selection array', ()=>{
-      expect(modesEl.componentInstance.ngModel).toEqual({   id: 'candidate-metric',
-                                                            showMode:"Candidate",
-                                                            showModeName:"candidate",
-                                                            metric:"metric",
-                                                            metricName:"Metric"  }   )
-    });
+    // xit('should set default values as the first value of each selection array', ()=>{
+    //   expect(modesEl.componentInstance.ngModel).toEqual({   id: 'candidate-metric',
+    //                                                         showMode:"Candidate",
+    //                                                         showModeName:"candidate",
+    //                                                         metric:"metric",
+    //                                                         metricName:"Metric"  }   )
+    // });
 
-    it('should connect graphEl with data from selectors - show by candidate case', ()=>{
-      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
-                                                showMode:"candidate",
-                                                showModeName:"Candidate",
-                                                metric:"metric2",
-                                                metricName:"Metric"  } );
-      candidatesEl.componentInstance.change.emit({ id: 'two', name: 'Candidate Two', color:"#888" })
-      vizCategoriesEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+    it('should update graphEl when a mode is emited from selectPanel', ()=>{
+      selectPanelEl.componentInstance.modeChange.emit( {  id: 'candidate-metric',
+                                                          showMode:"candidate",
+                                                          showModeName:"Candidate",
+                                                          metric:"metric2",
+                                                          metricName:"Metric"  } );
       fixture.detectChanges();
       expect(graphEl.componentInstance.showBy).toEqual('candidate');
       expect(graphEl.componentInstance.metric).toEqual('metric2');
-      expect(graphEl.componentInstance.candidates).toEqual([ { id: 'two', name: 'Candidate Two', color:"#888" } ]);
-      expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
 
     });
 
-    it('should connect graphEl with data from selectors - show by theme case', ()=>{
-      modesEl.componentInstance.change.emit( {  id: 'theme-metric',
-                                                showMode:"theme",
-                                                showModeName:"Theme",
-                                                metric:"metric2",
-                                                metricName:"Metric"  } );
-      candidatesEl.componentInstance.change.emit([{ id: 'two', name: 'Candidate Two', color:"#888" }])
-      vizCategoriesEl.componentInstance.change.emit({ id: 'one-a', name: 'VizCategory One a', children: []});
+    it('should update graphEl when a candidates are emited from selectPanel', ()=>{
+
+      selectPanelEl.componentInstance.candidatesChange.emit([{ id: 'two', name: 'Candidate Two', color:"#888" }])
+      // selectPanelEl.componentInstance.change.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
       fixture.detectChanges();
-      expect(graphEl.componentInstance.showBy).toEqual('theme');
-      expect(graphEl.componentInstance.metric).toEqual('metric2');
       expect(graphEl.componentInstance.candidates).toEqual([ { id: 'two', name: 'Candidate Two', color:"#888" } ]);
+      // expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+
+    });
+
+
+    it('should update graphEl when themes are emited from selectPanel', ()=>{
+
+      selectPanelEl.componentInstance.themesChange.emit([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
+      fixture.detectChanges();
       expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
 
-    })
+    });
   })
 
 });

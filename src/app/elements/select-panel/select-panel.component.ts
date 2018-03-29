@@ -16,6 +16,7 @@ export class SelectPanelComponent implements OnInit {
 
   @Output() showByChange = new EventEmitter<string>();
   @Output() metricChange =  new EventEmitter<string>();
+  @Output() modeChange = new EventEmitter<Mode>()
   @Output() candidatesChange = new EventEmitter<Candidate[]>();
   @Output() themesChange = new EventEmitter<VizCategory[]>();
 
@@ -28,7 +29,7 @@ export class SelectPanelComponent implements OnInit {
 
   constructor(private candidatesService: CandidatesService,
               private vizCategoriesServices: VizCategoriesService,
-  			      private modesServices: ModesService,
+  			  private modesServices: ModesService,
               ) { }
 
   ngOnInit() {
@@ -46,9 +47,8 @@ export class SelectPanelComponent implements OnInit {
   }
 
   changeMode($event){
-  	this.showBy = $event.showMode;
-    this.showByChange.emit($event.showMode);
-    this.metricChange.emit($event.metric);
+  	this.showBy = $event.showMode; 
+  	this.modeChange.emit($event);
   }
 
   changeCandidates($event){
