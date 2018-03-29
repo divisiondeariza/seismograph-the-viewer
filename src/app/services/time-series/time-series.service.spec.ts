@@ -125,4 +125,25 @@ describe('TimeSeriesService', () => {
   		.toEqual(expectedSeries);
   }));
 
+  it('getSeries should return an empty array when one of parameters is undefined', 
+     inject([TimeSeriesService], (service: TimeSeriesService) => {
+    
+    expect(service.getSeries(undefined, 
+                            modes[1],
+                            candidates,  
+                            [vizCategories[0]])).toEqual([]);
+    expect(service.getSeries(expectedData, 
+                        undefined,
+                        candidates,  
+                        [vizCategories[0]])).toEqual([]);  
+    expect(service.getSeries(expectedData, 
+                        modes[1],
+                        undefined,  
+                        [vizCategories[0]])).toEqual([]);    
+    expect(service.getSeries(expectedData, 
+                        modes[1],
+                        candidates,  
+                        undefined)).toEqual([]);
+  }))
+
 });

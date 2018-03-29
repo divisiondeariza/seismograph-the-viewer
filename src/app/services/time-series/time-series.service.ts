@@ -18,6 +18,8 @@ export class TimeSeriesService {
   }
 
   getSeries(data:any, mode:Mode, candidates:Candidate[],  themes:VizCategory[]){
+    if(data == undefined || mode == undefined || candidates == undefined || themes == undefined)
+      return []
     if(mode.showMode == 'candidate')
       return themes.map((theme)=>this.getSingleSerie(data, theme, candidates[0], mode.showMode) )
     if(mode.showMode == 'theme')
