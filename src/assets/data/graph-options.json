@@ -7,6 +7,9 @@
       "axisLabel": "fecha",
       "rotateLabels": -15
     },
-    "yAxis": {}
+    "yAxis": {},
+    "legend": {
+      "height": "400px"
+    }
   }
 }

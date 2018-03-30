@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, DoCheck, OnChanges } from '@angular/core';
+import { NvD3Module } from 'ng2-nvd3';
+
+
+import { GraphOptionsService } from '../../services/graph-options/graph-options.service';
 import { TimeSeriesService } from '../../services/time-series/time-series.service';
 import { TimeSerie } from '../../classes/time-serie';
-import { NvD3Module } from 'ng2-nvd3';
 
 import { VizCategory } from '../../classes/viz-category';
 import { Candidate } from '../../classes/candidate';
@@ -25,7 +28,8 @@ export class GraphComponent implements OnInit, OnChanges{
   public timeSeries: TimeSerie[];
 
   constructor(
-  	private timeSeriesService:TimeSeriesService
+  	private timeSeriesService:TimeSeriesService,
+    private graphOptionsService:GraphOptionsService
   	) { }
 
   ngOnInit() {
@@ -34,26 +38,18 @@ export class GraphComponent implements OnInit, OnChanges{
   	this.timeSeriesService.getData()
   		.subscribe((data) => this.rawData = data);
 
-
-    this.options = {
-      chart: {
-        type: 'lineChart',
-        height: 450,
-        useInteractiveGuideline: true,
-        xAxis: {
-          axisLabel: 'fecha',
-          tickFormat: d => moment(d).format("D [de] MMMM [de] YYYY"),
-          rotateLabels: -15,
-        },
-        yAxis: {
-          tickFormat: d => d3.format('.02f')(d),
-        }
-      }
-    }
+    this.graphOptionsService.getOptions()
+      .subscribe((options) => this.setOptions(options));
   }
 
   ngOnChanges(){
       this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.mode, this.candidates, this.themes);
+  }
+
+  private setOptions(options){
+    this.options = options;
+    this.options.chart.xAxis.tickFormat = d => moment(d).format("D [de] MMMM [de] YYYY")
+    this.options.chart.yAxis.tickFormat = d => d3.format('.02f')(d)
   }
 
 }

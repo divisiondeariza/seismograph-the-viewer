@@ -12,6 +12,8 @@ import { CandidatesService } from './services/candidates/candidates.service';
 import { VizCategoriesService } from './services/viz-categories/viz-categories.service';
 import { ModesService } from './services/modes/modes.service';
 import { TimeSeriesService } from './services/time-series/time-series.service';
+import { GraphOptionsService } from './services/graph-options/graph-options.service';
+
 
 import { GraphComponent } from './elements/graph/graph.component';
 
@@ -41,7 +43,8 @@ import { SelectPanelComponent } from './elements/select-panel/select-panel.compo
   providers: [CandidatesService,
               VizCategoriesService,
               ModesService,
-              TimeSeriesService],
+              TimeSeriesService,
+              GraphOptionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

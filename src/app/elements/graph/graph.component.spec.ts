@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Input, Output, Component } from '@angular/core';
 import { TimeSeriesService } from '../../services/time-series/time-series.service';
+import { GraphOptionsService } from '../../services/graph-options/graph-options.service';
+
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
 
@@ -33,6 +35,9 @@ describe('GraphComponent', () => {
   let vizCategories: VizCategory[];
   let modes: Mode[];
 
+  let graphOptionsService: any;
+  let getOptionsSpy: jasmine.Spy;
+  let options: any;
 
   beforeEach(async(() => {
     rawData = {'some':{'data':{'from':'server'}}};
@@ -59,13 +64,23 @@ describe('GraphComponent', () => {
                     metric:"metric1",
                     name:"Metric"  }, 
                   ];
+    options = {"chart":{"Some-default-option":{"setting":"graph"},
+                        xAxis:{},
+                        yAxis:{}}}
 
     timeSeriesService = jasmine.createSpyObj('TimeSeriesService',['getSeries', 'getData'])
     getSeriesSpy = timeSeriesService.getSeries.and.returnValue(timeSeries);
     getDataSpy = timeSeriesService.getData.and.returnValue(of(rawData));
+
+    graphOptionsService = jasmine.createSpyObj('GraphOptionsService', ['getOptions']);
+    getOptionsSpy = graphOptionsService.getOptions.and.returnValue(of(options));
+
     TestBed.configureTestingModule({
       declarations: [ GraphComponent, Nvd3StubComponent ],
-      providers: [{provide:  TimeSeriesService, useValue: timeSeriesService}],
+      providers: [
+          {provide:  TimeSeriesService, useValue: timeSeriesService},
+          {provide: GraphOptionsService, useValue: graphOptionsService}
+          ],
     })
     .compileComponents();
   }));
@@ -104,12 +119,9 @@ describe('GraphComponent', () => {
       expect(nvd3Comp.data).toEqual(timeSeries);    
     });
 
-    it('Should basic data', () =>{
-      expect(chart.height).toEqual(450);
-      expect(chart.type).toEqual('lineChart');
-      expect(chart.useInteractiveGuideline).toBeTruthy();
-      expect(chart.xAxis.axisLabel).toEqual("fecha");
-      expect(chart.xAxis.rotateLabels).toEqual(-15);
+    it('Should set default data', () =>{
+      expect(chart["Some-default-option"]).toEqual({"setting":"graph"});
+
     });
 
     it('Should set tickFormats correctly', ()=>{
