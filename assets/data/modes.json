@@ -4,41 +4,41 @@
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"importance",
-      "name":"¿Qué importancia le da un candidato a varios temas?"
+      "name":"¿Qué tanto habla un candidato sobre varios temas?"
    },
    {
       "id":"candidate-effectivity",
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"effectivity",
-      "name":"¿Qué efectividad tiene un candidato al hablar de varios temas?"
+      "name":"¿Qué tantas reacciones produce un candidato al hablar sobre varios temas?"
    },
    {
       "id":"candidate-opinion",
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"opinion",
-      "name":"¿Qué opina la gente cuando un candidato habla sobre varios temas?"
+      "name":"¿Qué opinión produce que un candidato hable de varios temas?"
    },
    {
       "id":"theme-importance",
       "showMode":"theme",
       "showModeName":"Por Tema",
       "metric":"importance",
-      "name":"¿Qué importancia le dan los candidatos a un tema?"
+      "name":"¿Qué tanto hablan los candidatos sobre un tema?"
    },
    {
       "id":"theme-effectivity",
       "showMode":"theme",
       "showModeName":"Por Tema",
       "metric":"effectivity",
-      "name":"¿Qué efectividad tienen los candidatos al hablar de un tema?"
+      "name":"¿Qué tantas reacciones producen los candidatos al hablar sobre un tema?"
    },
    {
       "id":"theme-opinion",
       "showMode":"theme",
       "showModeName":"Por Tema",
       "metric":"opinion",
-      "name":"¿Qué opina la gente cuando los candidatos hablan sobre un tema?"
+      "name":"¿Qué opinión produce que los candidatos hablen sobre un tema?"
    }
 ]
