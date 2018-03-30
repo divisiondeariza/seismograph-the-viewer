@@ -109,14 +109,14 @@ describe('TimeSeriesService', () => {
   			{'y': 0.5, 'x': new Date('2018-01-02')}
   			],
   		 'key': 'Candidate One',
-       // 'color': '#fff'
+       'color': '#fff'
   		},
   		{'values':[
   			{'y': 1, 'x': new Date('2018-01-01')},
   			{'y': 1.5, 'x': new Date('2018-01-02')}
   			],
   		 'key': 'Candidate Two',
-       // 'color': '#888'
+       'color': '#888'
   		}
   	]
 

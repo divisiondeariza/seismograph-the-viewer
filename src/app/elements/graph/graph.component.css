@@ -2,7 +2,8 @@
 	font-size: 18px;
 }
 
-
-:host >>> .nv-noData{
-	font-size: 3vw;
+@media(max-width: 576px) { 
+	:host >>> .nv-noData{
+		font-size: 4vw;
+	}
 }

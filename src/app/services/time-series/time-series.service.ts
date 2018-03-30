@@ -30,8 +30,11 @@ export class TimeSeriesService {
     let dates = data[theme.id][candidate.id].dates;
   	let values = data[theme.id][candidate.id].values;
   	let key = showBy == 'theme'?candidate.name:theme.name
-  	return {'values': dates.map((date,index)=> ({'x': new Date(date),'y': +values[index] })),
-  			    'key': key}  
+    let timeserie =  {'values': dates.map((date,index)=> ({'x': new Date(date),'y': +values[index] })),
+  			              'key': key}  
+    if(showBy == 'theme')
+      timeserie['color'] = candidate.color
+    return timeserie
   }
   
 } 
