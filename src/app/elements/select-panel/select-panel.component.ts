@@ -28,6 +28,9 @@ export class SelectPanelComponent implements OnInit {
   public mode: Mode;
   public candidates: any;
 
+  public candidatesPlaceholder: string;
+  public themesPlaceholder: string;
+
 
 
   constructor(private candidatesService: CandidatesService,
@@ -48,7 +51,7 @@ export class SelectPanelComponent implements OnInit {
       this.modesServices.getModes().subscribe(
         modes => {
           this.modes = modes;
-          this.mode = this.modes[0];
+          // this.mode = this.modes[0];
         }
 
       )
@@ -60,7 +63,10 @@ export class SelectPanelComponent implements OnInit {
   changeMode($event){
   	this.showBy = $event.showMode; 
   	this.modeChange.emit($event);
+    this.candidatesPlaceholder = this.showBy=='candidate'?'Seleccione un candidato':'Seleccione uno o más candidatos';
+    this.themesPlaceholder = this.showBy=='theme'?'Seleccione un tema':'Seleccione uno o más temas';
   }
+  
 
   changeCandidates($event){
     this.candidatesChange.emit(this.arrayfy($event));
@@ -73,5 +79,6 @@ export class SelectPanelComponent implements OnInit {
   private arrayfy(element){
   	return (element instanceof Array)?element:[ element ]
   }
+
 
 }

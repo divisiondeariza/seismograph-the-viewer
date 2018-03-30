@@ -1,0 +1,7 @@
+ng-select{
+	margin-bottom: 10px;
+}
+
+:host >>> #modes-select .ng-clear-zone{
+	display: none;
+}

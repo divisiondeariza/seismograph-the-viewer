@@ -9,7 +9,8 @@
     },
     "yAxis": {},
     "legend": {
-      "height": "400px"
-    }
+      "rightAlign:": false
+    },
+    "noData": "Por favor seleccione los datos requeridos"
   }
 }

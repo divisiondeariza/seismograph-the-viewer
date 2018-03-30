@@ -15,9 +15,11 @@ import { VizCategory } from '../../classes/viz-category';
 @Component({selector: 'ng-select', template: ''})
 class NgSelectStubComponent {
   @Input() items: any;
-  @Input() multiple: boolean
-  @Input() maxSelectedItems: boolean
+  @Input() multiple: boolean;
+  @Input() maxSelectedItems: number;
+  @Input() hidden: boolean;
   @Output() change = new EventEmitter();
+  @Input() placeholder;
 
   @Input() ngModel: any;
 
@@ -77,6 +79,11 @@ describe('SelectPanelComponent', () => {
 
     fixture = TestBed.createComponent(SelectPanelComponent);
     component = fixture.componentInstance;
+    component.mode = { id: 'default',
+                            showMode:"candidate",
+                            showModeName:"Candidate",
+                            metric:"metric",
+                            name:"Metric"  };
     fixture.detectChanges();
   });
 
@@ -93,6 +100,50 @@ describe('SelectPanelComponent', () => {
       candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
     });    
 
+    it('should set placeholder for modes', ()=>{
+      expect(modesEl.componentInstance.placeholder).toEqual("Seleccione una pregunta")
+    });
+
+    it('should set placeholder for candidates when showBy==candidate', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
+                                                showMode:"candidate",
+                                                showModeName:"Candidate",
+                                                metric:"metric",
+                                                name:"Metric"  } );
+      fixture.detectChanges();
+      expect(candidatesEl.componentInstance.placeholder).toEqual("Seleccione un candidato");
+    });
+
+    it('should set placeholder for candidates when showBy!=candidate', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
+                                                showMode:"theme",
+                                                showModeName:"Candidate",
+                                                metric:"metric",
+                                                name:"Metric"  } );
+      fixture.detectChanges();
+      expect(candidatesEl.componentInstance.placeholder).toEqual("Seleccione uno o más candidatos");
+    });
+
+    it('should set placeholder for themes when showBy==theme', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
+                                                showMode:"theme",
+                                                showModeName:"Candidate",
+                                                metric:"metric",
+                                                name:"Metric"  } );
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.placeholder).toEqual("Seleccione un tema");
+    });
+
+    it('should set placeholder for candidates when showBy!=theme', ()=>{
+      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
+                                                showMode:"candidate",
+                                                showModeName:"Candidate",
+                                                metric:"metric",
+                                                name:"Metric"  } );
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.placeholder).toEqual("Seleccione uno o más temas");
+    });
+
     // it('should set mode default as the first element', ()=>{
     //   expect(modesEl.componentInstance.ngModel).toEqual(modes[0]);
     // });
@@ -102,7 +153,7 @@ describe('SelectPanelComponent', () => {
     //   expect(candidatesEl.componentInstance.ngModel).toEqual(candidates[0]);
     // });
 
-  })
+  });
 
   describe('setting candidates select', ()=>{
     let candidatesEl: DebugElement;
@@ -110,6 +161,16 @@ describe('SelectPanelComponent', () => {
     beforeEach(() =>{
       candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
     });
+
+    it("should not be visible if no mode selected", ()=>{
+      component.showBy = undefined;
+      fixture.detectChanges();
+      expect(candidatesEl.componentInstance.hidden).toBeTruthy();
+      component.showBy = "showMode";
+      fixture.detectChanges();
+      expect(candidatesEl.componentInstance.hidden).toBeFalsy();
+    });
+
     it('Should set candidates correctly', ()=>{
       expect(candidatesEl.componentInstance.items).toEqual(candidates);
     });
@@ -160,6 +221,15 @@ describe('SelectPanelComponent', () => {
     });
     it('Should set vizCategories correctly', ()=>{
       expect(vizCategoriesEl.componentInstance.items).toEqual(vizCategories);
+    });
+
+    it("should not be visible if no mode selected", ()=>{
+      component.showBy = undefined;
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.hidden).toBeTruthy();
+      component.showBy = "showMode";
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.hidden).toBeFalsy();
     });
 
     it('should configure correctly the ng-selec attributes', ()=>{
@@ -239,4 +309,4 @@ describe('SelectPanelComponent', () => {
 
   });
 
-});
+})

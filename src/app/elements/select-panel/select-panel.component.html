@@ -1,38 +1,42 @@
-	<div class="row">
-		<div class="col-sm-8">
-			<ng-select 
-				id="modes-select"
-				[items] = "modes"
-				bindLabel="name"
-				(change)="changeMode($event)"
-				>
-			</ng-select>
-		</div>
-		<div class="col-sm-4">
-			<div class="row">
-				<div class="col-6 col-sm-12">
-					<ng-select 
-						id="candidates-select"
-						[items] = "allCandidates"
-						bindLabel="name"
-					    [multiple]="showBy != 'candidate'"
-					    [maxSelectedItems]="4"
-					    (change)="changeCandidates($event)"
-						>
-					</ng-select>						
-				</div>
-				<div class="col-6 col-sm-12">
-					<ng-select 
-						id="viz-categories-select"
-						[items] = "allVizCategories"
-						bindLabel="name"
-					    [multiple]="showBy != 'theme'"
-					    [maxSelectedItems]="4"
-					    (change)="changeThemes($event)"
-						>
-					</ng-select>					
-				</div>
-				
-			</div>
-		</div>
+<div class="row">
+	<div class="col-12">
+		<ng-select 
+			id="modes-select"
+			[items] = "modes"
+			bindLabel="name"
+			(change)="changeMode($event)"
+			[placeholder]="'Seleccione una pregunta'"
+			>
+		</ng-select>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-6">
+		<ng-select 
+			id="candidates-select"
+			[items] = "allCandidates"
+			bindLabel="name"
+		    [multiple]="showBy != 'candidate'"
+		    [maxSelectedItems]="4"
+		    (change)="changeCandidates($event)"
+		    [placeholder]="candidatesPlaceholder"
+		    [hidden] = "showBy == undefined"
+			>
+		</ng-select>						
+	</div>
+	<div class="col-6">
+		<ng-select 
+			id="viz-categories-select"
+			[items] = "allVizCategories"
+			bindLabel="name"
+		    [multiple]="showBy != 'theme'"
+		    [maxSelectedItems]="4"
+		    (change)="changeThemes($event)"
+		    [placeholder]="themesPlaceholder"
+		    [hidden] = "showBy == undefined"
+			>
+		</ng-select>					
+	</div>
+	
 </div>
