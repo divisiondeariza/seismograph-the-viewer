@@ -5,3 +5,13 @@ ng-select{
 :host >>> #modes-select .ng-clear-zone{
 	display: none;
 }
+
+:host >>> #modes-select .ng-option{
+	white-space: normal;
+}
+
+@media(max-width: 576px) { 
+	ng-select{
+		font-size: 0.85rem;
+	}
+}
