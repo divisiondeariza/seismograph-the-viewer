@@ -1,7 +1,7 @@
 {
   "chart": {
     "type": "lineChart",
-    "height": 450,
+    "height": 300,
     "useInteractiveGuideline": true,
     "xAxis": {
       "axisLabel": "fecha",
@@ -11,6 +11,12 @@
     "legend": {
       "rightAlign:": false
     },
+    "color":[
+      "#eb1c24",
+      "#2cc3ff",
+      "#29b574",
+      "#fedd14"
+    ],
     "noData": "Por favor seleccione los datos requeridos"
   }
 }
