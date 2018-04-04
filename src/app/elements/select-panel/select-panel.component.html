@@ -6,6 +6,7 @@
 			bindLabel="name"
 			(change)="changeMode($event)"
 			[placeholder]="'Seleccione una pregunta'"
+			[ngModel] = "defaultTheme?modes[3]:null"
 			>
 		</ng-select>
 	</div>
@@ -22,6 +23,7 @@
 		    (change)="changeCandidates($event)"
 		    [placeholder]="candidatesPlaceholder"
 		    [hidden] = "showBy == undefined"
+		    [ngModel] = "defaultCandidates"
 			>
 		</ng-select>						
 	</div>
@@ -35,6 +37,7 @@
 		    (change)="changeThemes($event)"
 		    [placeholder]="themesPlaceholder"
 		    [hidden] = "showBy == undefined"
+		    [ngModel] = "defaultTheme"
 			>
 		</ng-select>					
 	</div>

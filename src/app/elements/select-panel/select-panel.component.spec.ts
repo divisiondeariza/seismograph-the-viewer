@@ -38,29 +38,29 @@ describe('SelectPanelComponent', () => {
 
   beforeEach(async(() => {
 
-    candidates = [{ id: 'one', name: 'Candidate One', color:"#fff" }, { id: 'two', name: 'Candidate Two', color:"#888" }];
+    candidates = [{ id: 'one', name: 'Candidate One', color:"#fff" }, 
+                  { id: 'two', name: 'Candidate Two', color:"#888" },
+                  { id: 'two', name: 'Candidate Two', color:"#444" },
+                  { id: 'two', name: 'Candidate Two', color:"#222" },
+                  { id: 'two', name: 'Candidate Two', color:"#111" },];
     const candidatesService = jasmine.createSpyObj('CandidatesService', ['getCandidates']);
     getCandidatesSpy = candidatesService.getCandidates.and.returnValue(of(candidates));
 
-    vizCategories = [{ id: 'one', name: 'VizCategory One', children: [
-                    { id: 'one-a', name: 'VizCategory One a', children: []},
-                    { id: 'one-b', name: 'VizCategory One b', children: []},
-                    ] }]
+    vizCategories = [
+                    { id: 't-one', name: 'VizCategory One', children: []},
+                    { id: 't-two', name: 'VizCategory Two', children: []},
+                    { id: 't-three', name: 'VizCategory Three', children: []},
+                     ]
     const vizCategoriesService = jasmine.createSpyObj('VizCategoriesService', ['getVizCategories'])
     getVizCategoriesSpy = vizCategoriesService.getVizCategories.and.returnValue(of(vizCategories));                    
 
-    modes =  [
-                {   id: 'candidate-metric',
-                    showMode:"Candidate",
-                    showModeName:"candidate",
-                    metric:"metric",
-                    name:"Metric"  },         
-                {   id: 'theme-metric',
-                    showMode:"Theme",
-                    showModeName:"theme",
-                    metric:"metric",
-                    name:"Metric"  }, 
-                  ];
+    modes = [{"id":"candidate-importance","showMode":"candidate","showModeName":"Por Candidato","metric":"topicratio","name":""},
+             {"id":"candidate-effectivity","showMode":"candidate","showModeName":"Por Candidato","metric":"topiceffectivity","name":""},
+             {"id":"candidate-opinion","showMode":"candidate","showModeName":"Por Candidato","metric":"topicsentiment","name":""},
+             {"id":"theme-importance","showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":""},
+             {"id":"theme-effectivity","showMode":"theme","showModeName":"Por Tema","metric":"topiceffectivity","name":""},
+             {"id":"theme-opinion","showMode":"theme","showModeName":"Por Tema","metric":"topicsentiment","name":""}]
+
     const modesService = jasmine.createSpyObj('VizModes', ['getModes'])
     getVizCategoriesSpy = modesService.getModes.and.returnValue(of(modes));     
 
@@ -74,21 +74,51 @@ describe('SelectPanelComponent', () => {
     })
     .compileComponents();
   }));
-
+ 
   beforeEach(() => {
 
     fixture = TestBed.createComponent(SelectPanelComponent);
     component = fixture.componentInstance;
-    component.mode = { id: 'default',
-                            showMode:"candidate",
-                            showModeName:"Candidate",
-                            metric:"metric",
-                            name:"Metric"  };
     fixture.detectChanges();
   });
 
+    describe('Setting defaults', ()=>{
+      let modesEl: DebugElement;
+      let vizCategoriesEl: DebugElement;
+      let candidatesEl: DebugElement;
 
-  describe('Setting defaults', ()=>{
+      it('should not have default values selected without defaultTheme', () =>{
+        modesEl = fixture.debugElement.query(By.css('#modes-select'));
+        vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
+        candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
+        expect(modesEl.componentInstance.ngModel).toBeNull();
+/*        expect(vizCategoriesEl.componentInstance.ngModel).toEqual({ id: 'two', name: 'VizCategory Two', children: []})
+        expect(candidatesEl.componentInstance.ngModel.length).toEqual(4);   */
+      })
+
+      it('should set correct theme if  defaultTheme given', ()=>{
+        // Re-generate component with defaultTheme
+        fixture = TestBed.createComponent(SelectPanelComponent);
+        component = fixture.componentInstance;
+        component.defaultThemeId = 't-two';
+        fixture.detectChanges();      
+
+        modesEl = fixture.debugElement.query(By.css('#modes-select'));
+        vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
+        candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
+        expect(modesEl.componentInstance.ngModel)
+              .toEqual({"id":"theme-importance","showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":""})
+        expect(vizCategoriesEl.componentInstance.ngModel).toEqual({ id: 't-two', name: 'VizCategory Two', children: []})
+        expect(candidatesEl.componentInstance.ngModel.length).toEqual(4);      
+        expect(candidates).toEqual(jasmine.arrayContaining(candidatesEl.componentInstance.ngModel));      
+      })
+    })
+
+
+
+
+
+  describe('Setting placeholders', ()=>{
     let modesEl: DebugElement;
     let vizCategoriesEl: DebugElement;
     let candidatesEl: DebugElement;
@@ -143,15 +173,6 @@ describe('SelectPanelComponent', () => {
       fixture.detectChanges();
       expect(vizCategoriesEl.componentInstance.placeholder).toEqual("Seleccione uno o más temas");
     });
-
-    // it('should set mode default as the first element', ()=>{
-    //   expect(modesEl.componentInstance.ngModel).toEqual(modes[0]);
-    // });
-
-    // it('should set candidate default element when multiple==false', ()=>{
-    //   candidatesEl.componentInstance.multiple = false;
-    //   expect(candidatesEl.componentInstance.ngModel).toEqual(candidates[0]);
-    // });
 
   });
 

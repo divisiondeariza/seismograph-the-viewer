@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 import { CandidatesService } from '../../services/candidates//candidates.service';
 import { VizCategoriesService } from '../../services/viz-categories/viz-categories.service';
@@ -14,8 +14,7 @@ import { Mode } from '../../classes/mode';
 })
 export class SelectPanelComponent implements OnInit {
 
-  @Output() showByChange = new EventEmitter<string>();
-  @Output() metricChange =  new EventEmitter<string>();
+  @Input() defaultThemeId: string;
   @Output() modeChange = new EventEmitter<Mode>()
   @Output() candidatesChange = new EventEmitter<Candidate[]>();
   @Output() themesChange = new EventEmitter<VizCategory[]>();
@@ -25,33 +24,37 @@ export class SelectPanelComponent implements OnInit {
   public allVizCategories: VizCategory[];
   public modes: Mode[];
 
-  public mode: Mode;
-  public candidates: any;
-
   public candidatesPlaceholder: string;
   public themesPlaceholder: string;
 
+  public defaultCandidates:Candidate[];
+  public defaultTheme: VizCategory;
 
 
   constructor(private candidatesService: CandidatesService,
               private vizCategoriesServices: VizCategoriesService,
-  			  private modesServices: ModesService,
+  			      private modesServices: ModesService,
               ) { }
 
   ngOnInit() {
   	  this.candidatesService.getCandidates().subscribe(
   		  candidates => {
           this.allCandidates = candidates
+          this.defaultCandidates = candidates.slice(0,4); 
         }
       )
       
       this.vizCategoriesServices.getVizCategories().subscribe(
-        vizCategories => this.allVizCategories = vizCategories
+        vizCategories => {
+          this.allVizCategories = vizCategories;
+          let themeFound = this.allVizCategories.filter(theme => theme.id == this.defaultThemeId);
+          if(themeFound.length > 0)
+            this.defaultTheme = themeFound[0]
+        }
       )      
       this.modesServices.getModes().subscribe(
         modes => {
           this.modes = modes;
-          // this.mode = this.modes[0];
         }
 
       )
