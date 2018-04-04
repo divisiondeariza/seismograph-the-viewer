@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid seismograph">
 	<div class="row">
 		<h1>
 			SISMÓGRAFO ELECTORAL
@@ -19,12 +19,20 @@
 				   [source]="source"			
 	    	></app-graph>	
 
-	<div class="row">
-		<div class="col-12"></div>
-		<div class="btn-group col-6 center">
-		  <label class="btn btn-primary" [(ngModel)]="source" btnRadio="facebook">Facebook</label>
-		  <!-- <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="all">Todas</label> -->
-		  <label class="btn btn-primary" [(ngModel)]="source" btnRadio="twitter">Twitter</label>
+	<div class="row source-select">
+
+		<div class="col-12">
+			<h6 class="text-center">Fuente</h6>
+		</div>
+
+
+		<div class="col-6 offset-3 text-center">
+			<div class="btn-group">
+				<label class="btn btn-primary" [(ngModel)]="source" btnRadio="facebook">Facebook</label>
+				<label class="btn btn-primary" [(ngModel)]="source" btnRadio="all">Todas</label>
+				<label class="btn btn-primary" [(ngModel)]="source" btnRadio="twitter">Twitter</label>
+			</div>
+
 		</div>		
 	</div>
 

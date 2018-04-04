@@ -14,9 +14,21 @@ h1{
 ng-select{
 	margin-top:10px;
 
-
 }
 
-.container-fluid{
+.seismograph{
 	max-width: 650px;
+	margin-top: 40px;
 }
+
+.btn{
+	border-color:black;
+	background-color: black;
+}
+
+.btn-primary.active{
+	color:black !important;
+	background-color: white !important;
+   border-color:black  !important;;
+}
+
