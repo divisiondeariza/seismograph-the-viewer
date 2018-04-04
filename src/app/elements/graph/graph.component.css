@@ -7,3 +7,7 @@
 		font-size: 4vw;
 	}
 }
+
+:host >>> g.nv-groups path.nv-line {
+  stroke-width: 3px;
+}
