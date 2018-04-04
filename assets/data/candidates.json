@@ -1,15 +1,5 @@
 [
   {
-    "name": "Piedad Córdoba",
-    "id": "cordoba",
-    "color": "#ec2176"
-  },
-  {
-    "name": "Humberto De La Calle",
-    "id": "delacalle",
-    "color": "#eb1c24"
-  },
-  {
     "name": "Iván Duque",
     "id": "duque",
     "color": "#2cc3ff"
@@ -33,5 +23,15 @@
     "name": "Viviane Morales Hoyos",
     "id": "morales",
     "color": "#f26170"
+  },
+  {
+    "name": "Piedad Córdoba",
+    "id": "cordoba",
+    "color": "#ec2176"
+  },
+  {
+    "name": "Humberto De La Calle",
+    "id": "delacalle",
+    "color": "#eb1c24"
   }
 ]
