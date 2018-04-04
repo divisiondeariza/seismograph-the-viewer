@@ -15,8 +15,19 @@
 
 		<app-graph [mode]="selectedMode"
 				   [candidates]="selectedCandidates"
-				   [themes]="selectedThemesIds"				
-	    	></app-graph>		
+				   [themes]="selectedThemesIds"	
+				   [source]="source"			
+	    	></app-graph>	
+
+	<div class="row">
+		<div class="col-12"></div>
+		<div class="btn-group col-6 center">
+		  <label class="btn btn-primary" [(ngModel)]="source" btnRadio="facebook">Facebook</label>
+		  <!-- <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="all">Todas</label> -->
+		  <label class="btn btn-primary" [(ngModel)]="source" btnRadio="twitter">Twitter</label>
+		</div>		
+	</div>
+
 	<app-credits></app-credits>
 </div>
 

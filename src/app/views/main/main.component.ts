@@ -24,6 +24,8 @@ export class MainComponent implements OnInit {
 
   public defaultThemeId:string;
 
+  public source:string = 'facebook';
+
   constructor(  private route:  ActivatedRoute   ) { }
 
   ngOnInit() {

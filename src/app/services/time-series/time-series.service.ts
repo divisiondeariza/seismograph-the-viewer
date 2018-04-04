@@ -13,8 +13,8 @@ export class TimeSeriesService {
     private http: HttpClient,
   ) { }
 
-  getData ():Observable<any>{
-  	return this.http.get("assets/data/time-series2.json")
+  getData (source):Observable<any>{
+  	return this.http.get(`assets/data/time-series/${source}.json`)
   }
 
   getSeries(data:any, mode:Mode, candidates:Candidate[],  themes:VizCategory[]){
@@ -34,7 +34,6 @@ export class TimeSeriesService {
   			              'key': key}  
     if(showBy == 'theme')
       timeserie['color'] = candidate.color
-    console.log(timeserie)
     return timeserie
   }
   

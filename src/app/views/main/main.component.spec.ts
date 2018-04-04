@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Input, Output, EventEmitter, DebugElement, Component } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { FormsModule } from '@angular/forms';
 
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ActivatedRoute, convertToParamMap, ParamMap, Params } from '@angular/router';
@@ -57,6 +59,7 @@ class GraphComponent {
   @Input() candidates: Candidate[];
   @Input() themes: VizCategory[];
   @Input() mode: Mode;
+  @Input() source: string;
 
 }
 
@@ -72,10 +75,37 @@ describe('MainComponent', () => {
                       SelectPanelStubComponent,
                       GraphComponent,
                       CreditsComponent],      
-      providers: [{ provide: ActivatedRoute, useValue: activatedRoute }]
+      providers: [{ provide: ActivatedRoute, useValue: activatedRoute }],
+      imports:[ ButtonsModule.forRoot(), FormsModule]
     })
     .compileComponents();
   }));
+
+  describe("Set source", ()=>{
+    let sourceEl:DebugElement[];
+    let graphEl: DebugElement;    
+    
+    beforeEach(()=>{
+      fixture = TestBed.createComponent(MainComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      sourceEl = fixture.nativeElement.querySelectorAll('.btn');
+      graphEl = fixture.debugElement.query(By.css('app-graph'));
+    });
+
+    it("Should set source in graph as facebook by default", ()=>{
+        expect(graphEl.componentInstance.source).toEqual('facebook');
+    })
+
+    it("Should set source in graph when clicked one of the source buttons", ()=>{
+      for(let labelEl of sourceEl){
+        labelEl.click();
+        fixture.detectChanges();
+        expect(graphEl.componentInstance.source).toEqual(labelEl.attributes.btnradio.nodeValue)
+      }
+    })
+
+  });
 
  
   describe('default theme', ()=>{

@@ -91,14 +91,21 @@ describe('GraphComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 
-  it('Should set data at start', () =>{
-    expect(getDataSpy).toHaveBeenCalledTimes(1);
-    expect(component.rawData).toEqual(rawData);
-  });
+  describe('get data', ()=>{
+    it('Should set data when source changes', () =>{
+      expect(getDataSpy).toHaveBeenCalledTimes(0);
+      component.source = 'some-source';
+      fixture.detectChanges();
+      expect(getDataSpy).toHaveBeenCalledTimes(1);
+      expect(getDataSpy).toHaveBeenCalledWith('some-source');
+      expect(component.rawData).toEqual(rawData);
+      expect(getSeriesSpy).toHaveBeenCalledTimes(1); 
+      expect(getSeriesSpy).toHaveBeenCalledWith(rawData, component.mode, component.candidates, component.themes);   
+
+    });
+  })
+
 
   describe('nvd3 settings', ()=>{
     let chart:any;
@@ -108,18 +115,13 @@ describe('GraphComponent', () => {
       chart = nvd3Comp.options.chart
     });    
 
-    it('should try to set timeseries on init when data arrives', () =>{
-      expect(getSeriesSpy).toHaveBeenCalledTimes(1); 
-      expect(getSeriesSpy).toHaveBeenCalledWith(rawData, component.mode, component.candidates, component.themes);   
-    });
-
     it('should set correctly timeseries', () =>{
       component.mode = modes[0]
       component.candidates = [candidates[0]];
       component.themes = vizCategories;
+      component.source = 'some-source';
       component.ngOnChanges();
       fixture.detectChanges();
-      expect(getSeriesSpy).toHaveBeenCalledTimes(2); // should have been called on init too when data arrives
       expect(getSeriesSpy.calls.mostRecent().args).toEqual([rawData, modes[0], [candidates[0]],  vizCategories]);
       expect(nvd3Comp.data).toEqual(timeSeries);    
     });

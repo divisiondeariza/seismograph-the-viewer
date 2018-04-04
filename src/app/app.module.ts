@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 import { NvD3Module } from 'ng2-nvd3';
 import { FormsModule } from '@angular/forms';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './views/main/main.component';
@@ -38,7 +39,8 @@ import { SelectPanelComponent } from './elements/select-panel/select-panel.compo
     HttpClientModule,
     NgSelectModule,
     NvD3Module,
-    FormsModule
+    FormsModule,
+    ButtonsModule.forRoot()
   ],
   providers: [CandidatesService,
               VizCategoriesService,

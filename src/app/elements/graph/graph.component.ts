@@ -23,6 +23,15 @@ export class GraphComponent implements OnInit, OnChanges{
   @Input() candidates: Candidate[];
   @Input() themes: VizCategory[];
   @Input() mode: Mode;
+  @Input() 
+  set source(source: string){
+    this.timeSeriesService.getData(source)
+      .subscribe((data) => {
+        this.rawData = data;
+        this.setTimeSeries()  
+      })
+    }
+  // source: string;
   public rawData: any;
   public options: any;
   public timeSeries: TimeSerie[];
@@ -34,12 +43,6 @@ export class GraphComponent implements OnInit, OnChanges{
 
   ngOnInit() {
     moment.locale("es");
-    
-  	this.timeSeriesService.getData()
-  		.subscribe((data) => {
-        this.rawData = data;
-        this.setTimeSeries()      
-      });
 
     this.graphOptionsService.getOptions()
       .subscribe((options) => this.setOptions(options));
