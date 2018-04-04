@@ -29,6 +29,7 @@ export class SelectPanelComponent implements OnInit {
 
   public defaultCandidates:Candidate[];
   public defaultTheme: VizCategory;
+  public defaultMode: Mode;
 
 
   constructor(private candidatesService: CandidatesService,
@@ -41,6 +42,7 @@ export class SelectPanelComponent implements OnInit {
   		  candidates => {
           this.allCandidates = candidates
           this.defaultCandidates = candidates.slice(0,4); 
+          this.changeCandidates(this.defaultCandidates);
         }
       )
       
@@ -50,11 +52,15 @@ export class SelectPanelComponent implements OnInit {
           let themeFound = this.allVizCategories.filter(theme => theme.id == this.defaultThemeId);
           if(themeFound.length > 0)
             this.defaultTheme = themeFound[0]
+          this.changeThemes(this.defaultTheme);
         }
       )      
       this.modesServices.getModes().subscribe(
         modes => {
           this.modes = modes;
+          this.defaultMode = this.defaultThemeId?modes[3]:null;
+          if(this.defaultMode)
+            this.changeMode(this.defaultMode);
         }
 
       )

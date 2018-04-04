@@ -96,21 +96,36 @@ describe('SelectPanelComponent', () => {
         expect(candidatesEl.componentInstance.ngModel.length).toEqual(4);   */
       })
 
+
+      // For good sake refactor this
       it('should set correct theme if  defaultTheme given', ()=>{
         // Re-generate component with defaultTheme
         fixture = TestBed.createComponent(SelectPanelComponent);
         component = fixture.componentInstance;
         component.defaultThemeId = 't-two';
+        spyOn(component.candidatesChange, 'emit');
+        spyOn(component.themesChange, 'emit');
         fixture.detectChanges();      
 
         modesEl = fixture.debugElement.query(By.css('#modes-select'));
         vizCategoriesEl = fixture.debugElement.query(By.css('#viz-categories-select'));
         candidatesEl = fixture.debugElement.query(By.css('#candidates-select'));
+
+
+
         expect(modesEl.componentInstance.ngModel)
               .toEqual({"id":"theme-importance","showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":""})
         expect(vizCategoriesEl.componentInstance.ngModel).toEqual({ id: 't-two', name: 'VizCategory Two', children: []})
         expect(candidatesEl.componentInstance.ngModel.length).toEqual(4);      
-        expect(candidates).toEqual(jasmine.arrayContaining(candidatesEl.componentInstance.ngModel));      
+        expect(candidates).toEqual(jasmine.arrayContaining(candidatesEl.componentInstance.ngModel));  
+        expect(candidatesEl.componentInstance.hidden).toBeFalsy();    
+        expect(vizCategoriesEl.componentInstance.hidden).toBeFalsy();
+
+
+        fixture.detectChanges();     
+        expect(component.candidatesChange.emit).toHaveBeenCalledWith(jasmine.arrayContaining(candidatesEl.componentInstance.ngModel));
+        expect(component.themesChange.emit).toHaveBeenCalledWith([{ id: 't-two', name: 'VizCategory Two', children: []}]);
+
       })
     })
 
@@ -259,11 +274,14 @@ describe('SelectPanelComponent', () => {
 
     })
 
-    it("should set isMultiple true only when showBy != 'theme' ", ()=>{
+    it("should set multiple true only when showBy == 'candidate' ", ()=>{
       component.showBy = 'candidate';
       fixture.detectChanges();
       expect(vizCategoriesEl.componentInstance.multiple).toEqual(true);
       component.showBy = 'theme';
+      fixture.detectChanges();
+      expect(vizCategoriesEl.componentInstance.multiple).toEqual(false);
+      component.showBy = undefined;
       fixture.detectChanges();
       expect(vizCategoriesEl.componentInstance.multiple).toEqual(false);
 

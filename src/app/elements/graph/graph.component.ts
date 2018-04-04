@@ -36,14 +36,17 @@ export class GraphComponent implements OnInit, OnChanges{
     moment.locale("es");
     
   	this.timeSeriesService.getData()
-  		.subscribe((data) => this.rawData = data);
+  		.subscribe((data) => {
+        this.rawData = data;
+        this.setTimeSeries()      
+      });
 
     this.graphOptionsService.getOptions()
       .subscribe((options) => this.setOptions(options));
   }
 
   ngOnChanges(){
-      this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.mode, this.candidates, this.themes);
+    this.setTimeSeries();
   }
 
   private setOptions(options){
@@ -51,5 +54,12 @@ export class GraphComponent implements OnInit, OnChanges{
     this.options.chart.xAxis.tickFormat = d => moment(d).format("D [de] MMMM [de] YYYY")
     this.options.chart.yAxis.tickFormat = d => d3.format('.02f')(d)
   }
+
+  private setTimeSeries(){
+      this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.mode, this.candidates, this.themes);
+  }
+
+
+
 
 }

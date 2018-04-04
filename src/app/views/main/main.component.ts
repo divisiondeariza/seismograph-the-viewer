@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router, Params } from '@angular/router';
 
 import { CandidatesService } from '../../services/candidates//candidates.service';
 import { VizCategoriesService } from '../../services/viz-categories/viz-categories.service';
@@ -21,11 +22,14 @@ export class MainComponent implements OnInit {
   public selectedThemesIds: VizCategory[];
   public selectedMode: Mode;
 
+  public defaultThemeId:string;
 
-  constructor(     ) { }
+  constructor(  private route:  ActivatedRoute   ) { }
 
   ngOnInit() {
-
+    this.route.queryParams.subscribe((queryParams: Params) =>{
+      this.defaultThemeId = queryParams.themeId
+    })
   }
 
   changeMode($event){

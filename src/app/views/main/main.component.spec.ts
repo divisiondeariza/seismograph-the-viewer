@@ -3,7 +3,8 @@ import { Input, Output, EventEmitter, DebugElement, Component } from '@angular/c
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
 
-
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ActivatedRoute, convertToParamMap, ParamMap, Params } from '@angular/router';
 import { MainComponent } from './main.component';
 import { CreditsComponent } from '../../elements/credits/credits.component'
 import { CandidatesService } from '../../services/candidates/candidates.service';
@@ -13,11 +14,42 @@ import { Mode } from '../../classes/mode';
 import { VizCategoriesService } from '../../services/viz-categories/viz-categories.service';
 import { VizCategory } from '../../classes/viz-category';
 
+
+class ActivatedRouteStub {
+  // Use a ReplaySubject to share previous values with subscribers
+  // and pump new values into the `paramMap` observable
+  private subjectParam = new ReplaySubject<ParamMap>();
+  private subjectQuery = new ReplaySubject<any>();
+
+  constructor(initialParams?: Params) {
+    this.setParamMap(initialParams);
+  }
+
+  /** The mock paramMap observable */
+  readonly paramMap = this.subjectParam.asObservable();
+
+  /** Set the paramMap observables's next value */
+  setParamMap(params?: Params) {
+    this.subjectParam.next(convertToParamMap(params));
+  };
+
+  /** The mock queryParams observable */
+  readonly queryParams = this.subjectQuery.asObservable();
+
+  /** Set the queryParams observables's next value */
+  setQueryParams(queryParams?: any) {
+    this.subjectQuery.next(queryParams);
+  };
+
+}
+
+
 @Component({selector: 'app-select-panel', template: ''})
 class SelectPanelStubComponent {
   @Output() candidatesChange = new EventEmitter<Candidate[]>();
   @Output() themesChange = new EventEmitter<VizCategory[]>();
   @Output() modeChange = new EventEmitter<Mode>();
+  @Input() defaultThemeId: string;
 }
 
 @Component({selector: 'app-graph', template: ''})
@@ -31,22 +63,39 @@ class GraphComponent {
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
+  let activatedRoute: ActivatedRouteStub;
 
   beforeEach(async(() => {
+    activatedRoute = new ActivatedRouteStub();
     TestBed.configureTestingModule({
       declarations: [ MainComponent,
                       SelectPanelStubComponent,
                       GraphComponent,
-                      CreditsComponent]
+                      CreditsComponent],      
+      providers: [{ provide: ActivatedRoute, useValue: activatedRoute }]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MainComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+ 
+  describe('default theme', ()=>{
+    let selectPanelEl: DebugElement;
+
+    beforeEach(() =>{
+      fixture = TestBed.createComponent(MainComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      selectPanelEl = fixture.debugElement.query(By.css('app-select-panel'));
+    });        
+
+    it('should set default theme when themeId given', ()=>{
+      activatedRoute.setQueryParams({ 'themeId': "some-theme" })
+      fixture.detectChanges();
+      expect(selectPanelEl.componentInstance.defaultThemeId).toEqual('some-theme')
+
+    })
+  })
+
 
 
   describe('setting graph component', ()=>{
@@ -54,6 +103,9 @@ describe('MainComponent', () => {
     let graphEl: DebugElement;
 
     beforeEach(() =>{
+      fixture = TestBed.createComponent(MainComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
       selectPanelEl = fixture.debugElement.query(By.css('app-select-panel'));
       graphEl = fixture.debugElement.query(By.css('app-graph'));
     });    
