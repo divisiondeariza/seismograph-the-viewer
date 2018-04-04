@@ -1,127 +1,212 @@
 [
-      {
-        "children": [],
-        "id": "seguridad_urbana",
-        "name": "Seguridad urbana"
-      },
-      {
-        "children": [],
-        "id": "infancia",
-        "name": "Infancia"
-      },
-      {
-        "children": [],
-        "id": "impuestos",
-        "name": "Impuestos"
-      },
-      {
-        "children": [],
-        "id": "cultura",
-        "name": "Cultura"
-      },
-      {
-        "children": [],
-        "id": "salud",
-        "name": "Salud"
-      },
-      {
-        "children": [],
-        "id": "derechos",
-        "name": "Derechos"
-      },
-      {
-        "children": [],
-        "id": "paz",
-        "name": "Paz"
-      },
-      {
-        "children": [],
-        "id": "venezuela",
-        "name": "Venezuela"
-      },
-      {
-        "children": [],
-        "id": "vivienda",
-        "name": "Vivienda"
-      },
-      {
-        "children": [],
-        "id": "seguridad_nacional",
-        "name": "Seguridad nacional"
-      },
-      {
-        "children": [],
-        "id": "politica_exterior",
-        "name": "Política exterior"
-      },
-      {
-        "children": [],
-        "id": "trabajo",
-        "name": "Trabajo"
-      },
-      {
-        "children": [],
-        "id": "tecnologia",
-        "name": "Tecnología"
-      },
-      {
-        "children": [],
-        "id": "mujer",
-        "name": "Mujer"
-      },
-      {
-        "children": [],
-        "id": "ciencia",
-        "name": "Ciencia"
-      },
-      {
-        "children": [],
-        "id": "valores_tradicionales",
-        "name": "Valores tradicionales"
-      },
-      {
-        "children": [],
-        "id": "servicios_publicos",
-        "name": "Servicios públicos"
-      },
-      {
-        "children": [],
-        "id": "pensiones",
-        "name": "Pensiones"
-      },
-      {
-        "children": [],
-        "id": "infraestructura",
-        "name": "Infraestructura"
-      },
-      {
-        "children": [],
-        "id": "corrupcion",
-        "name": "Corrupción"
-      },
-      {
-        "children": [],
-        "id": "mineria_y_petroleo",
-        "name": "Minería y petróleo"
-      },
-      {
-        "children": [],
-        "id": "economia",
-        "name": "Economía"
-      },
-      {
-        "children": [],
-        "id": "educacion",
-        "name": "Educación"
-      },
-      {
-        "children": [],
-        "id": "discapacidad",
-        "name": "Discapacidad"
-      },
-      {
-        "children": [],
-        "id": "ambiente",
-        "name": "Ambiente"
-      }
-    ]
+  {
+    "children": [
+      
+    ],
+    "id": "ambiente",
+    "name": "ambiente"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "ciencia",
+    "name": "ciencia"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "corrupcion",
+    "name": "corrupción"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "cultura",
+    "name": "cultura"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "derechos",
+    "name": "derechos"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "discapacidad",
+    "name": "discapacidad"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "economia",
+    "name": "economía"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "educacion",
+    "name": "educación"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "empleo",
+    "name": "empleo"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "empleo_femenino",
+    "name": "empleo femenino"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "empleo_juvenil",
+    "name": "empleo juvenil"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "empleo_para_victimas",
+    "name": "empleo para víctimas"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "impuestos",
+    "name": "impuestos"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "infancia",
+    "name": "infancia"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "infraestructura_y_transporte",
+    "name": "infraestructura y transporte"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "mineria_y_petroleo",
+    "name": "minería y petróleo"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "mujer",
+    "name": "mujer"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "paz",
+    "name": "paz"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "pensiones",
+    "name": "pensiones"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "pobreza",
+    "name": "pobreza"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "politica_exterior",
+    "name": "politica exterior"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "rivales",
+    "name": "rivales"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "salud",
+    "name": "salud"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "seguridad_nacional",
+    "name": "seguridad nacional"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "seguridad_urbana",
+    "name": "seguridad urbana"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "servicios_publicos",
+    "name": "servicios públicos"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "tecnologia",
+    "name": "tecnología"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "valores_tradicionales",
+    "name": "valores tradicionales"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "venezuela",
+    "name": "venezuela"
+  },
+  {
+    "children": [
+      
+    ],
+    "id": "vivienda",
+    "name": "vivienda"
+  }
+]
