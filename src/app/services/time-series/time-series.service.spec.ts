@@ -19,22 +19,25 @@ describe('TimeSeriesService', () => {
 
   beforeEach(() => {
 	expectedData = {
-	  	'theme1':{
-	  		'candidate1':{
-	  			'dates': ['2018-01-01', '2018-01-02'], 'values': ['0', '0.5']
-	  		},
-	  		'candidate2':{
-	  			'dates': ['2018-01-01', '2018-01-02'], 'values': ['1', '1.5']
-	  		}
-	  	},
-		'theme2':{
-	  		'candidate1':{
-	  			'dates': ['2018-01-01', '2018-01-02'], 'values': ['2', '2.5']
-	  		},
-	  		'candidate2':{
-	  			'dates': ['2018-01-01', '2018-01-02'], 'values': ['3', '3.5']
-	  		}
-	  	}
+      "metric0":{},
+      "metric1":{      
+         'theme1':{
+            'candidate1':{
+              'dates': ['2018-01-01', '2018-01-02'], 'values': ['0', '0.5']
+            },
+            'candidate2':{
+              'dates': ['2018-01-01', '2018-01-02'], 'values': ['1', '1.5']
+            }
+          },
+        'theme2':{
+            'candidate1':{
+              'dates': ['2018-01-01', '2018-01-02'], 'values': ['2', '2.5']
+            },
+            'candidate2':{
+              'dates': ['2018-01-01', '2018-01-02'], 'values': ['3', '3.5']
+            }
+          }
+      }
 	  }
 
     candidates = [{ id: 'candidate1', name: 'Candidate One', color:"#fff" }, 
@@ -71,7 +74,7 @@ describe('TimeSeriesService', () => {
 	  service.getData()
 	  		.subscribe(data => expect(data).toEqual(expectedData))
 
-	  const req = httpTestingController.expectOne("assets/data/time-series.json");
+	  const req = httpTestingController.expectOne("assets/data/time-series2.json");
 	  expect(req.request.method).toEqual('GET');
 
 	  req.flush(expectedData)

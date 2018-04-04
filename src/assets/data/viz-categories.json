@@ -1,127 +1,127 @@
 [
       {
         "children": [],
-        "id": "seguridad_urbana_topic",
+        "id": "seguridad_urbana",
         "name": "Seguridad urbana"
       },
       {
         "children": [],
-        "id": "infancia_topic",
+        "id": "infancia",
         "name": "Infancia"
       },
       {
         "children": [],
-        "id": "impuestos_topic",
+        "id": "impuestos",
         "name": "Impuestos"
       },
       {
         "children": [],
-        "id": "cultura_topic",
+        "id": "cultura",
         "name": "Cultura"
       },
       {
         "children": [],
-        "id": "salud_topic",
+        "id": "salud",
         "name": "Salud"
       },
       {
         "children": [],
-        "id": "derechos_topic",
+        "id": "derechos",
         "name": "Derechos"
       },
       {
         "children": [],
-        "id": "paz_topic",
+        "id": "paz",
         "name": "Paz"
       },
       {
         "children": [],
-        "id": "venezuela_topic",
+        "id": "venezuela",
         "name": "Venezuela"
       },
       {
         "children": [],
-        "id": "vivienda_topic",
+        "id": "vivienda",
         "name": "Vivienda"
       },
       {
         "children": [],
-        "id": "seguridad_nacional_topic",
+        "id": "seguridad_nacional",
         "name": "Seguridad nacional"
       },
       {
         "children": [],
-        "id": "politica_exterior_topic",
+        "id": "politica_exterior",
         "name": "Política exterior"
       },
       {
         "children": [],
-        "id": "trabajo_topic",
+        "id": "trabajo",
         "name": "Trabajo"
       },
       {
         "children": [],
-        "id": "tecnologia_topic",
+        "id": "tecnologia",
         "name": "Tecnología"
       },
       {
         "children": [],
-        "id": "mujer_topic",
+        "id": "mujer",
         "name": "Mujer"
       },
       {
         "children": [],
-        "id": "ciencia_topic",
+        "id": "ciencia",
         "name": "Ciencia"
       },
       {
         "children": [],
-        "id": "valores_tradicionales_topic",
+        "id": "valores_tradicionales",
         "name": "Valores tradicionales"
       },
       {
         "children": [],
-        "id": "servicios_publicos_topic",
+        "id": "servicios_publicos",
         "name": "Servicios públicos"
       },
       {
         "children": [],
-        "id": "pensiones_topic",
+        "id": "pensiones",
         "name": "Pensiones"
       },
       {
         "children": [],
-        "id": "infraestructura_topic",
+        "id": "infraestructura",
         "name": "Infraestructura"
       },
       {
         "children": [],
-        "id": "corrupcion_topic",
+        "id": "corrupcion",
         "name": "Corrupción"
       },
       {
         "children": [],
-        "id": "mineria_y_petroleo_topic",
+        "id": "mineria_y_petroleo",
         "name": "Minería y petróleo"
       },
       {
         "children": [],
-        "id": "economia_topic",
+        "id": "economia",
         "name": "Economía"
       },
       {
         "children": [],
-        "id": "educacion_topic",
+        "id": "educacion",
         "name": "Educación"
       },
       {
         "children": [],
-        "id": "discapacidad_topic",
+        "id": "discapacidad",
         "name": "Discapacidad"
       },
       {
         "children": [],
-        "id": "ambiente_topic",
+        "id": "ambiente",
         "name": "Ambiente"
       }
     ]
