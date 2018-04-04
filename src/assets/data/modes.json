@@ -4,21 +4,21 @@
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"topicratio",
-      "name":"¿Qué tanto habla un candidato sobre varios temas?"
+      "name":"¿Qué tanto habla un candidato sobre diferentes temas?"
    },
    {
       "id":"candidate-effectivity",
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"topiceffectivity",
-      "name":"¿Qué tantas reacciones produce un candidato al hablar sobre varios temas?"
+      "name":"¿Qué tantas reacciones produce un candidato al hablar sobre diferentes temas?"
    },
    {
       "id":"candidate-opinion",
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"topicsentiment",
-      "name":"¿Qué opinión produce que un candidato hable de varios temas?"
+      "name":"¿Qué opinión produce que un candidato hable de diferentes temas?"
    },
    {
       "id":"theme-importance",
