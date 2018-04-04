@@ -51,7 +51,7 @@ export class GraphComponent implements OnInit, OnChanges{
 
   private setOptions(options){
     this.options = options;
-    this.options.chart.xAxis.tickFormat = d => moment(d).format("D [de] MMMM [de] YYYY")
+    this.options.chart.xAxis.tickFormat = d => moment(d).format("DD/MM")
     this.options.chart.yAxis.tickFormat = d => d3.format('.02f')(d)
   }
 

@@ -131,7 +131,7 @@ describe('GraphComponent', () => {
 
     it('Should set tickFormats correctly', ()=>{
       expect(d3.format('.02f')(Math.PI)).toEqual(chart.yAxis.tickFormat(Math.PI));
-      expect("22 de noviembre de 1989").toEqual(chart.xAxis.tickFormat('1989-11-22'));
+      expect("22/11").toEqual(chart.xAxis.tickFormat('1989-11-22'));
 
     })
 
