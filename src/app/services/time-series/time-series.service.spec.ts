@@ -69,17 +69,6 @@ describe('TimeSeriesService', () => {
     httpTestingController = TestBed.get(HttpTestingController);
   });
 
-  xit('should get full data if timeseries', inject([TimeSeriesService], (service: TimeSeriesService) => {
-	  
-	  service.getData()
-	  		.subscribe(data => expect(data).toEqual(expectedData))
-
-	  const req = httpTestingController.expectOne("assets/data/time-series2.json");
-	  expect(req.request.method).toEqual('GET');
-
-	  req.flush(expectedData)
-  }));
-
   it('should get data from timeseries given a source', inject([TimeSeriesService], (service: TimeSeriesService) => {
     
     service.getData('sourcename')

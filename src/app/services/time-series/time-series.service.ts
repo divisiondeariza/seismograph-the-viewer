@@ -15,6 +15,7 @@ export class TimeSeriesService {
 
   getData (source):Observable<any>{
   	return this.http.get(`assets/data/time-series/${source}.json`)
+    // return this.http.get(`http://52.14.188.152:5000/get_sismografo?doc_id=5ac40596a9474d5a14119fa0`)
   }
 
   getSeries(data:any, mode:Mode, candidates:Candidate[],  themes:VizCategory[]){

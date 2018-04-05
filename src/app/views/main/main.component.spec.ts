@@ -82,7 +82,7 @@ describe('MainComponent', () => {
   }));
 
   describe("Set source", ()=>{
-    let sourceEl:DebugElement[];
+    let sourceEl:any[];
     let graphEl: DebugElement;    
     
     beforeEach(()=>{
