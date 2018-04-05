@@ -3,7 +3,19 @@
 	text-align:center;
 }
 
-img{
+.wj-logo img{
 	width: 100%;
-	max-width: auto;
+	max-width: 450px;
+}
+
+.friends-logos img{
+	width: 70%;
+	max-width: 120px;
+}
+
+.friends-logos div:before{
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
 }
