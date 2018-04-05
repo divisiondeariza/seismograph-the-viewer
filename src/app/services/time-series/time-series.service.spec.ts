@@ -74,7 +74,7 @@ describe('TimeSeriesService', () => {
     service.getData('sourcename')
         .subscribe(data => expect(data).toEqual(expectedData))
 
-    const req = httpTestingController.expectOne("assets/data/time-series/sourcename.json");
+    const req = httpTestingController.expectOne("https://storage.googleapis.com/sismoee/static/sourcename.json");
     expect(req.request.method).toEqual('GET');
 
     req.flush(expectedData)
