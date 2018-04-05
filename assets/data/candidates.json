@@ -5,14 +5,14 @@
     "color": "#2cc3ff"
   },
   {
-    "name": "Sergio Fajardo",
-    "id": "fajardo",
-    "color": "#29b574"
-  },
-  {
     "name": "Gustavo Petro",
     "id": "petro",
     "color": "#fedd14"
+  },
+  {
+    "name": "Sergio Fajardo",
+    "id": "fajardo",
+    "color": "#29b574"
   },
   {
     "name": "Germán Vargas Lleras",
