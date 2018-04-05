@@ -62,11 +62,7 @@ export class SelectPanelComponent implements OnInit {
           if(this.defaultMode)
             this.changeMode(this.defaultMode);
         }
-
       )
-
-
-
   }
 
   changeMode($event){
@@ -78,11 +74,13 @@ export class SelectPanelComponent implements OnInit {
   
 
   changeCandidates($event){
-    this.candidatesChange.emit(this.arrayfy($event));
+    if($event)
+      this.candidatesChange.emit(this.arrayfy($event));
   }
 
   changeThemes($event){
-  	this.themesChange.emit(this.arrayfy($event));
+    if($event)
+    	this.themesChange.emit(this.arrayfy($event));
   }
 
   private arrayfy(element){

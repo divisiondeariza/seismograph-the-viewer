@@ -149,6 +149,6 @@ describe('TimeSeriesService', () => {
                         modes[1],
                         candidates,  
                         undefined)).toEqual([]);
-  }))
+  }));
 
 });

@@ -246,6 +246,12 @@ describe('SelectPanelComponent', () => {
       candidatesEl.componentInstance.change.emit({ id: 'one', name: 'Candidate One', color:"#fff" });
       fixture.detectChanges();
     });
+
+    it("should not emit when selector emits undefined", ()=>{
+      component.candidatesChange.subscribe((value)=> fail("Should not emit"))
+      candidatesEl.componentInstance.change.emit(undefined);
+      fixture.detectChanges();
+    });
   });
 
 
@@ -305,6 +311,13 @@ describe('SelectPanelComponent', () => {
       vizCategoriesEl.componentInstance.change.emit({ id: 'one-a', name: 'VizCategory One a', children: []});
       fixture.detectChanges();
     });
+
+    it("should not emit when selector emits undefined", ()=>{
+      component.themesChange.subscribe((value)=> fail("Should not emit"))
+      vizCategoriesEl.componentInstance.change.emit(undefined);
+      fixture.detectChanges();
+    });
+
   });
 
   describe('setting mode select', ()=>{
