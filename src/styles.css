@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:700|Merriweather:300|Open+Sans|Roboto:300,400');
 
 body{
 	font-family: 'Roboto', sans-serif;

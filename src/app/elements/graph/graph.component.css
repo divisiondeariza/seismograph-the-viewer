@@ -11,3 +11,11 @@
 :host >>> g.nv-groups path.nv-line {
   stroke-width: 3px;
 }
+
+:host >>> svg {
+	font-family: 'Roboto', sans-serif !important;
+}
+
+ :host >>> .nvd3 text{
+	font-family: 'Roboto', sans-serif !important;
+ }
