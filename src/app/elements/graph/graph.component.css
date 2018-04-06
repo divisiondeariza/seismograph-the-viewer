@@ -16,6 +16,11 @@
 	font-family: 'Roboto', sans-serif !important;
 }
 
- :host >>> .nvd3 text{
+:host >>> .nvd3 text{
 	font-family: 'Roboto', sans-serif !important;
- }
+}
+
+:host >>> .nv-y .zero line {
+	stroke: #000;
+	stroke-width:2;
+}
