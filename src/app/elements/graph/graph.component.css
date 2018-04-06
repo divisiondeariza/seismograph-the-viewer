@@ -18,9 +18,14 @@
 
 :host >>> .nvd3 text{
 	font-family: 'Roboto', sans-serif !important;
+	fill: #85888c;
 }
 
 :host >>> .nv-y .zero line {
 	stroke: #000;
 	stroke-width:2;
+}
+
+:host >>> .nv-y path.domain{
+	stroke-opacity: 0;
 }
