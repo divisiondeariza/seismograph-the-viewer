@@ -19,7 +19,6 @@ export class TimeSeriesService {
   }
 
   getSeries(data:any, mode:Mode, candidates:Candidate[],  themes:VizCategory[]){
-    console.log(themes)
     if(data == undefined || mode == undefined || candidates == undefined || themes == undefined)
       return []
     if(mode.showMode == 'candidate')

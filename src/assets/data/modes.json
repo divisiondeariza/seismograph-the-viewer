@@ -4,41 +4,47 @@
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"topicratio",
-      "name":"¿Qué tanto habla un candidato sobre diferentes temas?"
+      "name":"¿Qué tanto habla su candidato sobre los temas que a usted le importan?",
+      "info":"Para saberlo, se divide el número de palabras relacionadas con el tema escogido por el total de palabras que el candidato usó. El resultado se multiplica por 1000 para mayor claridad."
    },
    {
       "id":"candidate-effectivity",
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"topiceffectivity",
-      "name":"¿Qué tantas reacciones produce un candidato al hablar sobre diferentes temas?"
+      "name":"¿Qué tan efectivo con el público es lo que dice su candidato sobre los temas que a usted le importan?",
+      "info":"Para saberlo, se cuentan cuántas reacciones (es decir, comentarios, “me gusta” y republicaciones) obtuvieron las publicaciones que hablaban del tema escogido y se dividen entre el número de reacciones promedio de todas las publicaciones del candidato. El resultado se multiplica por 100 para mayor claridad."
    },
    {
       "id":"candidate-opinion",
       "showMode":"candidate",
       "showModeName":"Por Candidato",
       "metric":"topicsentiment",
-      "name":"¿Qué opinión produce que un candidato hable de diferentes temas?"
+      "name":"¿Qué opinión, positiva o negativa, genera su candidato al referirse a los temas que a usted le importan?",
+      "info":"Para saberlo, tomamos una muestra de los comentarios recibidos por las publicaciones que hablan del tema escogido y hacemos que un algoritmo de inteligencia artificial los lea y los clasifique entre positivos y negativos. Finalmente promediamos sus puntajes."
    },
    {
       "id":"theme-importance",
       "showMode":"theme",
       "showModeName":"Por Tema",
       "metric":"topicratio",
-      "name":"¿Qué tanto hablan los candidatos sobre un tema?"
+      "name":"Descubra qué candidato habla más sobre el tema que a usted le interesa.",
+      "info":"Para saberlo, se divide el número de palabras relacionadas con el tema escogido por el total de palabras que el candidato usó. El resultado se multiplica por 1000 para mayor claridad."
    },
    {
       "id":"theme-effectivity",
       "showMode":"theme",
       "showModeName":"Por Tema",
       "metric":"topiceffectivity",
-      "name":"¿Qué tantas reacciones producen los candidatos al hablar sobre un tema?"
+      "name":"¿Cuál es el candidato más efectivo con su público al hablar del tema que a usted le interesa?",
+      "info":"Para saberlo, se cuentan cuántas reacciones (es decir, comentarios, “me gusta” y republicaciones) obtuvieron las publicaciones que hablaban del tema escogido y se dividen entre el número de reacciones promedio de todas las publicaciones del candidato. El resultado se multiplica por 100 para mayor claridad."
    },
    {
       "id":"theme-opinion",
       "showMode":"theme",
       "showModeName":"Por Tema",
       "metric":"topicsentiment",
-      "name":"¿Qué opinión produce que los candidatos hablen sobre un tema?"
+      "name":"¿Cuál es el candidato que mejor opinión genera al hablar del tema que a usted le interesa?",
+      "info":"Para saberlo, tomamos una muestra de los comentarios recibidos por las publicaciones que hablan del tema escogido y hacemos que un algoritmo de inteligencia artificial los lea y los clasifique entre positivos y negativos. Finalmente promediamos sus puntajes."
    }
 ]

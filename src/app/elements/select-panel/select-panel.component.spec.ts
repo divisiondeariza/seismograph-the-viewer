@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Input, Output, EventEmitter, DebugElement, Component } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { SelectPanelComponent } from './select-panel.component';
 import { CandidatesService } from '../../services/candidates/candidates.service';
@@ -54,12 +55,12 @@ describe('SelectPanelComponent', () => {
     const vizCategoriesService = jasmine.createSpyObj('VizCategoriesService', ['getVizCategories'])
     getVizCategoriesSpy = vizCategoriesService.getVizCategories.and.returnValue(of(vizCategories));                    
 
-    modes = [{"id":"candidate-importance","showMode":"candidate","showModeName":"Por Candidato","metric":"topicratio","name":""},
-             {"id":"candidate-effectivity","showMode":"candidate","showModeName":"Por Candidato","metric":"topiceffectivity","name":""},
-             {"id":"candidate-opinion","showMode":"candidate","showModeName":"Por Candidato","metric":"topicsentiment","name":""},
-             {"id":"theme-importance","showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":""},
-             {"id":"theme-effectivity","showMode":"theme","showModeName":"Por Tema","metric":"topiceffectivity","name":""},
-             {"id":"theme-opinion","showMode":"theme","showModeName":"Por Tema","metric":"topicsentiment","name":""}]
+    modes = [{"showMode":"candidate","showModeName":"Por Candidato","metric":"topicratio","name":"", "info": "info"  },
+             {"showMode":"candidate","showModeName":"Por Candidato","metric":"topiceffectivity","name":"", "info": "info"},
+             {"showMode":"candidate","showModeName":"Por Candidato","metric":"topicsentiment","name":"", "info": "info"},
+             {"showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":"", "info": "info"},
+             {"showMode":"theme","showModeName":"Por Tema","metric":"topiceffectivity","name":"", "info": "info"},
+             {"showMode":"theme","showModeName":"Por Tema","metric":"topicsentiment","name":"", "info": "info"}]
 
     const modesService = jasmine.createSpyObj('VizModes', ['getModes'])
     getVizCategoriesSpy = modesService.getModes.and.returnValue(of(modes));     
@@ -70,7 +71,8 @@ describe('SelectPanelComponent', () => {
         { provide:  VizCategoriesService, useValue: vizCategoriesService },
         { provide:  CandidatesService, useValue: candidatesService },
         { provide:  ModesService, useValue: modesService }
-      ]
+      ],
+      imports: [ PopoverModule.forRoot() ]
     })
     .compileComponents();
   }));
@@ -114,7 +116,7 @@ describe('SelectPanelComponent', () => {
 
 
         expect(modesEl.componentInstance.ngModel)
-              .toEqual({"id":"theme-importance","showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":""})
+              .toEqual({"showMode":"theme","showModeName":"Por Tema","metric":"topicratio","name":"", "info": "info"})
         expect(vizCategoriesEl.componentInstance.ngModel).toEqual({ id: 't-two', name: 'VizCategory Two', children: []})
         expect(candidatesEl.componentInstance.ngModel.length).toEqual(4);      
         expect(candidates).toEqual(jasmine.arrayContaining(candidatesEl.componentInstance.ngModel));  
@@ -344,20 +346,38 @@ describe('SelectPanelComponent', () => {
     });
 
     it('should set showBy correctly and emit showByChange and metricChange when change is emmited', ()=>{
-      component.modeChange.subscribe((value) => expect(value).toEqual({ id: 'candidate-metric',
-                                                                        showMode:"candidate",
+      component.modeChange.subscribe((value) => expect(value).toEqual({ showMode:"candidate",
                                                                         showModeName:"Candidate",
                                                                         metric:"metric",
-                                                                        name:"Metric"  }))
-      modesEl.componentInstance.change.emit( {  id: 'candidate-metric',
-                                                showMode:"candidate",
+                                                                        name:"Metric",
+                                                                        info: "Info"  }))
+      modesEl.componentInstance.change.emit( {  showMode:"candidate",
                                                 showModeName:"Candidate",
                                                 metric:"metric",
-                                                name:"Metric"  } );
+                                                name:"Metric",
+                                                info: "Info"  } );
       expect(component.showBy).toEqual('candidate');
       fixture.detectChanges();
 
-    })
+    });
+    it('should set info button only when there is a mode selected', ()=>{
+      const btnInfoEl = fixture.debugElement.query(By.css('#btn-info'));
+      expect(btnInfoEl == null).toBeTruthy();
+    });
+
+    it('should set popover in info button correctly', ()=>{
+      modesEl.componentInstance.change.emit( {  showMode:"candidate",
+                                                showModeName:"Candidate",
+                                                metric:"metric",
+                                                name:"Metric",
+                                                info: "Info"  } );
+      fixture.detectChanges();
+      const btnInfoEl = fixture.debugElement.query(By.css('#btn-info'));
+      expect(btnInfoEl.attributes["ng-reflect-popover"]).toEqual("Info");
+
+    });
+
+
 
   });
 

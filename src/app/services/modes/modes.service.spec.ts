@@ -26,16 +26,16 @@ describe('ModesService', () => {
   	(service: ModesService)  =>{
 	  const expectedModes: Mode[] =
 	    [
-		    { 	id: 'candidate-metric',
-			    showMode:"Candidate",
-			    showModeName:"candidate",
-			    metric:"metric",
-			    name: "Metric"	}, 		    
-			{   id: 'theme-metric',
-			    showMode:"Theme",
-			    showModeName:"theme",
-			    metric:"metric",
-			    name:"Metric"	}, 
+                {   showMode:"candidate",
+                    showModeName:"Candidate",
+                    metric:"metric1",
+                    name:"Metric",
+                    info: "info"  },         
+                {   showMode:"theme",
+                    showModeName:"Theme",
+                    metric:"metric1",
+                    name:"Metric",
+                    info: "info"    }, 
 		    ];
 	  service.getModes()
 	  		.subscribe(modes => expect(modes).toEqual(expectedModes))

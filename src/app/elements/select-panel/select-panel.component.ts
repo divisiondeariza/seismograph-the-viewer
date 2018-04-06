@@ -20,6 +20,7 @@ export class SelectPanelComponent implements OnInit {
   @Output() themesChange = new EventEmitter<VizCategory[]>();
 
   public showBy: string;
+  public info: string;
   public allCandidates: Candidate[];
   public allVizCategories: VizCategory[];
   public modes: Mode[];
@@ -68,6 +69,7 @@ export class SelectPanelComponent implements OnInit {
   changeMode($event){
   	this.showBy = $event.showMode; 
   	this.modeChange.emit($event);
+    this.info = $event.info;
     this.candidatesPlaceholder = this.showBy=='candidate'?'Seleccione un candidato':'Seleccione uno o más candidatos';
     this.themesPlaceholder = this.showBy=='theme'?'Seleccione un tema':'Seleccione uno o más temas';
   }

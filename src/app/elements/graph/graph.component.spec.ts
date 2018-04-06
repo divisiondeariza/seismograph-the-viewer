@@ -53,16 +53,16 @@ describe('GraphComponent', () => {
     vizCategories = [{ id: 'theme1', name: 'Theme One', children: [] },
                      { id: 'theme2', name: 'Theme Two', children: [] } ]
     modes =  [
-                {   id: 'candidate-metric',
-                    showMode:"candidate",
+                {   showMode:"candidate",
                     showModeName:"Candidate",
                     metric:"metric1",
-                    name:"Metric"  },         
-                {   id: 'theme-metric',
-                    showMode:"theme",
+                    name:"Metric",
+                    info: "info"  },         
+                {   showMode:"theme",
                     showModeName:"Theme",
                     metric:"metric1",
-                    name:"Metric"  }, 
+                    name:"Metric",
+                    info: "info"    }, 
                   ];
     options = {"chart":{"Some-default-option":{"setting":"graph"},
                         xAxis:{},
