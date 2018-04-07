@@ -52,11 +52,17 @@ export class GraphComponent implements OnInit, OnChanges{
     this.setTimeSeries();
   }
 
+  shouldSetTags():boolean{
+    return (this.mode != undefined && 
+            this.candidates != undefined && 
+            this.themes != undefined && 
+            this.mode.metric == "topicsentiment");
+  }
+
   private setOptions(options){
     this.options = options;
     this.options.chart.xAxis.tickFormat = d => moment(d).format("DD/MM")
     this.options.chart.yAxis.tickFormat = this.formatY;
-    this.options.chart.interactiveLayer.tooltip.valueFormatter = this.formatY;
   }
 
   private setTimeSeries(){

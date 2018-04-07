@@ -29,3 +29,18 @@
 :host >>> .nv-y path.domain{
 	stroke-opacity: 0;
 }
+
+.tag-container p{
+	position: absolute;
+	font-size: 0.8rem;
+}
+
+.negative-tag {
+	transform: translateY(-100%);
+}
+
+@media(max-width: 576px) { 
+	.positive-tag{
+		margin-top: calc(65px - 8vw);
+	}
+}

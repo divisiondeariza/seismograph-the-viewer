@@ -10,7 +10,10 @@
     "yAxis": {},
     "legend": {
       "rightAlign:": false,
-      "updateState": false
+      "updateState": false,
+      "margin": {
+        "left": 40
+      }
     },
     "color":[
       "#eb1c24",

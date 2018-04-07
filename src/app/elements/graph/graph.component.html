@@ -1,3 +1,15 @@
-<p class="positive-tag"> positivo </p>
+<div class="tag-container" *ngIf="shouldSetTags()">
+	<p class="positive-tag"> 
+		<b>
+		  Muy  positiva
+		</b>
+	</p>
+</div>
 <nvd3 [options]="options" [data]="timeSeries"></nvd3>
-<p class="negative-tag"> negativo </p>
+<div class="tag-container" *ngIf="shouldSetTags()">
+	<p class="negative-tag"> 
+		<b>
+			Muy negativo
+		</b>
+	</p>
+</div>

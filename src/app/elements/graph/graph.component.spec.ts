@@ -145,4 +145,68 @@ describe('GraphComponent', () => {
 
 
   });
+
+  describe('Sentiment tags',()=>{
+    // it("Should set tag when no sentiment when mode is not given", ()=>{
+    //   const tags = fixture.debugElement.query(By.css('#modes-select'));
+    //   expect()
+    // });
+    it("Should not set any tag when no sentiment when mode is not given", ()=>{
+      const tags = fixture.debugElement.queryAll(By.css('.tag-container'));
+      expect(tags.length).toEqual(0);
+    });
+
+    it("Should not set tags when candidates is undefined", ()=>{
+      component.themes = [ vizCategories[0] ];
+      component.mode =  {   showMode:"candidate",
+                            showModeName:"Candidate",
+                            metric:"topicsentiment",
+                            name:"Metric",
+                            info: "info"  };
+      fixture.detectChanges()
+      const tags = fixture.debugElement.queryAll(By.css('.tag-container'));
+      expect(tags.length).toEqual(0);
+    });
+
+    it("Should not set tags when themes is undefined", ()=>{
+      component.candidates = [ candidates[0] ];
+      component.mode =  {   showMode:"candidate",
+                            showModeName:"Candidate",
+                            metric:"topicsentiment",
+                            name:"Metric",
+                            info: "info"  };
+      fixture.detectChanges()
+      const tags = fixture.debugElement.queryAll(By.css('.tag-container'));
+      expect(tags.length).toEqual(0);
+    });
+
+    it("Should not set tags when mode.metric != topicsentiment", ()=>{
+      component.candidates = [ candidates[0] ];
+      component.themes = [ vizCategories[0] ];
+      component.mode =  {   showMode:"candidate",
+                            showModeName:"Candidate",
+                            metric:"othertopic",
+                            name:"Metric",
+                            info: "info"  };
+      fixture.detectChanges()
+      const tags = fixture.debugElement.queryAll(By.css('.tag-container'));
+      expect(tags.length).toEqual(0);
+    });
+
+
+    it("Should set tags when mode.metric == topicsentiment", ()=>{
+      component.candidates = [ candidates[0] ];
+      component.themes = [ vizCategories[0] ];
+      component.mode =  {   showMode:"candidate",
+                            showModeName:"Candidate",
+                            metric:"topicsentiment",
+                            name:"Metric",
+                            info: "info"  };
+      fixture.detectChanges()
+      const tags = fixture.debugElement.queryAll(By.css('.tag-container'));
+      expect(tags.length).toEqual(2);
+    });
+
+
+  })
 });
