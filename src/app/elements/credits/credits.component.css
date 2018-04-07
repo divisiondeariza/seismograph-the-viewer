@@ -11,6 +11,7 @@
 .friends-logos img{
 	width: 70%;
 	max-width: 120px;
+	padding: 0;
 }
 
 .friends-logos div:before{
@@ -18,4 +19,35 @@
     display: inline-block;
     vertical-align: middle;  /* vertical alignment of the inline element */
     height: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
 }
+
+.logo-cuso{
+	text-align: left;
+}
+
+.logo-canada{
+	text-align: right;
+}
+
+
+
+.logo-cuso img {
+	width: 60%;
+	max-width: 120px;
+}
+
+.logo-fescol img{
+	width: 60%;
+	max-width: 120px;
+}
+
+
+.logo-canada img{
+	text-align: right;
+	width: 70%;
+	max-width: 120px;
+}
+
+
