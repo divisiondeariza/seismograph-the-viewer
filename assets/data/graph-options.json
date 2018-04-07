@@ -9,7 +9,11 @@
     },
     "yAxis": {},
     "legend": {
-      "rightAlign:": false
+      "rightAlign:": false,
+      "updateState": false,
+      "margin": {
+        "left": 40
+      }
     },
     "color":[
       "#eb1c24",
@@ -18,5 +22,8 @@
       "#fedd14"
     ],
     "noData": "Por favor seleccione los datos requeridos"
+  },
+  "interactiveLayer": {
+    "tooltip": {}
   }
 }
