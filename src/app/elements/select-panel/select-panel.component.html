@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-11">
+	<div class="col-11" id="modes-select-container">
 		<ng-select 
 			id="modes-select"
 			[items] = "modes"
@@ -10,16 +10,16 @@
 			>
 		</ng-select>
 	</div>
-	<!-- <div> -->
+	<div>
 		<button type="button" class="btn btn-info" *ngIf="info"
 			id="btn-info"
 	        [popover]="info"
 	        popoverTitle="Info"
-	        triggers="focus"
-	        placement="left">
+	        placement="left"
+	        >
 		  <b> &#8505;</b>
 		</button>
-	<!-- </div> -->
+	</div>
 </div>
 
 

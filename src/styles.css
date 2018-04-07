@@ -5,3 +5,11 @@
 body{
 	font-family: 'Roboto', sans-serif;
 }
+
+@media (max-width: 800px) and (hover: none) {
+
+	.nvtooltip{
+				visibility: hidden;		
+		}
+
+}
