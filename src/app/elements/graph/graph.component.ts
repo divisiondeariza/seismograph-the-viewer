@@ -55,11 +55,19 @@ export class GraphComponent implements OnInit, OnChanges{
   private setOptions(options){
     this.options = options;
     this.options.chart.xAxis.tickFormat = d => moment(d).format("DD/MM")
-    this.options.chart.yAxis.tickFormat = d => d3.format('.02f')(d)
+    this.options.chart.yAxis.tickFormat = this.formatY;
+    this.options.chart.interactiveLayer.tooltip.valueFormatter = this.formatY;
   }
 
   private setTimeSeries(){
       this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.mode, this.candidates, this.themes);
+  }
+
+  private formatY(value, i){
+    if(isNaN(value))
+      return "Sin Valor"
+    else
+      return d3.format('.02f')(value)
   }
 
 

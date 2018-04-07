@@ -64,9 +64,15 @@ describe('GraphComponent', () => {
                     name:"Metric",
                     info: "info"    }, 
                   ];
-    options = {"chart":{"Some-default-option":{"setting":"graph"},
+    options = { "chart":{"Some-default-option":{"setting":"graph"},
                         xAxis:{},
-                        yAxis:{}}}
+                        yAxis:{},
+                  "interactiveLayer": {
+                    "tooltip": {}
+                  }
+
+                }
+              }
 
     timeSeriesService = jasmine.createSpyObj('TimeSeriesService',['getSeries', 'getData'])
     getSeriesSpy = timeSeriesService.getSeries.and.returnValue(timeSeries);
@@ -133,9 +139,10 @@ describe('GraphComponent', () => {
 
     it('Should set tickFormats correctly', ()=>{
       expect(d3.format('.02f')(Math.PI)).toEqual(chart.yAxis.tickFormat(Math.PI));
+      expect("Sin Valor").toEqual(chart.yAxis.tickFormat(NaN));
       expect("22/11").toEqual(chart.xAxis.tickFormat('1989-11-22'));
+    });
 
-    })
 
   });
 });
