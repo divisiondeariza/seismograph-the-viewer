@@ -21,7 +21,8 @@
       "#29b574",
       "#fedd14"
     ],
-    "noData": "Por favor seleccione los datos requeridos"
+    "noData": "Por favor seleccione los datos requeridos",
+    "showYAxis": false
   },
   "interactiveLayer": {
     "tooltip": {}
