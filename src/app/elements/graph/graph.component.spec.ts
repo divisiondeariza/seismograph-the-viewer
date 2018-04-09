@@ -147,10 +147,7 @@ describe('GraphComponent', () => {
   });
 
   describe('Sentiment tags',()=>{
-    // it("Should set tag when no sentiment when mode is not given", ()=>{
-    //   const tags = fixture.debugElement.query(By.css('#modes-select'));
-    //   expect()
-    // });
+
     it("Should not set any tag when no sentiment when mode is not given", ()=>{
       const tags = fixture.debugElement.queryAll(By.css('.tag-container'));
       expect(tags.length).toEqual(0);

@@ -15,7 +15,6 @@ export class TimeSeriesService {
 
   getData (source):Observable<any>{
   	return this.http.get(`https://storage.googleapis.com/sismoee/static/${source}.json`)
-    // return this.http.get(`http://52.14.188.152:5000/get_sismografo?doc_id=5ac40596a9474d5a14119fa0`)
   }
 
   getSeries(data:any, mode:Mode, candidates:Candidate[],  themes:VizCategory[]){
@@ -31,11 +30,16 @@ export class TimeSeriesService {
     let dates = data[mode.metric][theme.id][candidate.id].dates;
   	let values = data[mode.metric][theme.id][candidate.id].values;
   	let key = showBy == 'theme'?candidate.name:theme.name
-    let timeserie =  {'values': dates.map((date,index)=> ({'x': new Date(date),'y': +values[index] })),
+    let timeserie =  {'values': this.getValuesForSeries(data[mode.metric][theme.id][candidate.id]),
   			              'key': key}  
     if(showBy == 'theme')
       timeserie['color'] = candidate.color
     return timeserie
+  }
+
+  private getValuesForSeries(singleDataSet:any){
+    return singleDataSet.dates.map((date,index)=> ({'x': new Date(date),
+                                                    'y': +singleDataSet.values[index] }))
   }
   
 }

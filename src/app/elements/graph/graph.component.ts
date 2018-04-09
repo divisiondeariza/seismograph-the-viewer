@@ -11,7 +11,7 @@ import { Candidate } from '../../classes/candidate';
 import { Mode } from '../../classes/mode';
 
 import 'd3';
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 declare let d3: any;
 
 @Component({
@@ -61,9 +61,10 @@ export class GraphComponent implements OnInit, OnChanges{
 
   private setOptions(options){
     this.options = options;
-    this.options.chart.xAxis.tickFormat = d => moment(d).format("DD/MM")
+    this.options.chart.xAxis.tickFormat = d => moment(d).tz('UTC').format("DD/MM");
     this.options.chart.yAxis.tickFormat = this.formatY;
   }
+
 
   private setTimeSeries(){
       this.timeSeries = this.timeSeriesService.getSeries(this.rawData, this.mode, this.candidates, this.themes);
