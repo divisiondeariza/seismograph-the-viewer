@@ -23,11 +23,11 @@
     margin-right: 0px;
 }
 
-.logo-cuso{
+.logo-fescol{
 	text-align: left;
 }
 
-.logo-canada{
+.logo-cuso{
 	text-align: right;
 }
 
@@ -45,7 +45,6 @@
 
 
 .logo-canada img{
-	text-align: right;
 	width: 70%;
 	max-width: 120px;
 }
