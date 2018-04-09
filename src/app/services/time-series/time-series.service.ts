@@ -38,6 +38,4 @@ export class TimeSeriesService {
     return timeserie
   }
   
-} 
-
-
+}
