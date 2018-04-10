@@ -26,10 +26,11 @@
 	stroke-width:2;
 }
 
-/*:host >>> .nv-y path.domain{
+:host >>> .nv-y path.domain{
 	stroke-opacity: 0;
+	stroke: #fff;
 }
-*/
+
 .tag-container p{
 	position: absolute;
 	font-size: 0.8rem;

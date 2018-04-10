@@ -27,8 +27,6 @@ export class TimeSeriesService {
   }
 
   private getSingleSerie(data:any, mode:Mode, theme:VizCategory, candidate:Candidate, showBy:string):TimeSerie{
-    let dates = data[mode.metric][theme.id][candidate.id].dates;
-  	let values = data[mode.metric][theme.id][candidate.id].values;
   	let key = showBy == 'theme'?candidate.name:theme.name
     let timeserie =  {'values': this.getValuesForSeries(data[mode.metric][theme.id][candidate.id]),
   			              'key': key}  
