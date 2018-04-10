@@ -4,8 +4,7 @@
     "height": 300,
     "useInteractiveGuideline": true,
     "xAxis": {
-      "axisLabel": "fecha",
-      "rotateLabels": -15
+      "axisLabel": "fecha"
     },
     "yAxis": {},
     "legend": {
@@ -21,8 +20,7 @@
       "#29b574",
       "#fedd14"
     ],
-    "noData": "Por favor seleccione los datos requeridos",
-    "showYAxis": false
+    "noData": "Por favor seleccione los datos requeridos"
   },
   "interactiveLayer": {
     "tooltip": {}
