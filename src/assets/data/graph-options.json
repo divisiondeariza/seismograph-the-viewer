@@ -4,8 +4,7 @@
     "height": 300,
     "useInteractiveGuideline": true,
     "xAxis": {
-      "axisLabel": "fecha",
-      "rotateLabels": -15
+      "axisLabel": "fecha"
     },
     "yAxis": {},
     "legend": {
