@@ -15,7 +15,7 @@ import { VizCategoriesService } from './services/viz-categories/viz-categories.s
 import { ModesService } from './services/modes/modes.service';
 import { TimeSeriesService } from './services/time-series/time-series.service';
 import { GraphOptionsService } from './services/graph-options/graph-options.service';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { GraphComponent } from './elements/graph/graph.component';
 
@@ -41,6 +41,7 @@ import { SelectPanelComponent } from './elements/select-panel/select-panel.compo
     NgSelectModule,
     NvD3Module,
     FormsModule,
+    AngularFontAwesomeModule,
     ButtonsModule.forRoot(),
     PopoverModule.forRoot()
   ],

@@ -7,17 +7,18 @@
 			(change)="changeMode($event)"
 			[placeholder]="'Seleccione una pregunta'"
 			[(ngModel)] = "defaultMode"
+			triggers = "focus"
 			>
 		</ng-select>
 	</div>
 	<div>
-		<button type="button" class="btn btn-info" *ngIf="info"
+		<button type="button" class="btn" *ngIf="info"
 			id="btn-info"
 	        [popover]="info"
 	        popoverTitle="Info"
 	        placement="left"
 	        >
-		  <b> &#8505;</b>
+		  <fa name="info"></fa> 
 		</button>
 	</div>
 </div>
