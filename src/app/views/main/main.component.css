@@ -41,3 +41,7 @@ ng-select{
 .source-select{
 	font-family: 'Merriweather', serif;
 }
+
+.last-updated{
+	text-align: center;
+}

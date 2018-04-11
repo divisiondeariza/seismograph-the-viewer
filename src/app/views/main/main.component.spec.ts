@@ -16,6 +16,7 @@ import { Mode } from '../../classes/mode';
 import { VizCategoriesService } from '../../services/viz-categories/viz-categories.service';
 import { VizCategory } from '../../classes/viz-category';
 
+import * as moment from 'moment-timezone';
 
 class ActivatedRouteStub {
   // Use a ReplaySubject to share previous values with subscribers
@@ -168,6 +169,21 @@ describe('MainComponent', () => {
       expect(graphEl.componentInstance.themes).toEqual([{ id: 'one-a', name: 'VizCategory One a', children: []}]);
 
     });
+  });
+
+  describe('setting last update element', ()=>{
+    let lastUpdatedElement: DebugElement;
+    beforeEach(() =>{
+      fixture = TestBed.createComponent(MainComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+      lastUpdatedElement = fixture.debugElement.query(By.css('.last-updated'));
+    });    
+
+    it('Should set date correcly', ()=>{
+      expect(lastUpdatedElement.nativeElement.innerHTML).toContain(moment().format("DD/MM/YYYY"))
+    })
+
   })
 
 });

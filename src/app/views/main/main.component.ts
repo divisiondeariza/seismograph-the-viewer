@@ -8,6 +8,7 @@ import { Candidate } from '../../classes/candidate';
 import { VizCategory } from '../../classes/viz-category';
 import { Mode } from '../../classes/mode';
 
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-main',
@@ -25,6 +26,8 @@ export class MainComponent implements OnInit {
   public defaultThemeId:string;
 
   public source:string = 'facebook';
+
+  public lastUpdated:string =  moment().format("DD/MM/YYYY");
 
   constructor(  private route:  ActivatedRoute   ) { }
 
