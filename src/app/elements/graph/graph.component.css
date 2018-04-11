@@ -1,6 +1,3 @@
-:host >>> .nv-legend-text{
-	/*font-size: 16px;*/
-}
 :host >>> .nv-noData { 
 		font-family: 'Roboto', sans-serif !important;
 		font-weight: normal;
@@ -9,6 +6,13 @@
 @media(max-width: 576px) { 
 	:host >>> .nv-noData{
 		font-size: 4vw;
+	}
+
+}
+
+@media(max-width: 350px) { 
+	:host >>> .nv-legend-text{
+		font-size: 10px;
 	}
 }
 
@@ -23,6 +27,10 @@
 :host >>> .nvd3 text{
 	font-family: 'Roboto', sans-serif !important;
 	fill: #85888c;
+}
+
+:host >>> .nv-legend-text{
+	transform: translateX(-1px);
 }
 
 :host >>> .tick  line {
@@ -47,12 +55,21 @@
 }
 
 .negative-tag {
-	transform: translateY(-100%);
+	transform: translateY(-150%);
+}
+
+.positive-tag{
+	margin-top: 24px;
 }
 
 @media(max-width: 576px) { 
 	.positive-tag{
-		margin-top: calc(65px - 8vw);
+		margin-top: calc(70px - 8vw);
+	}
+}
+@media(max-width: 536px) { 
+	.positive-tag{
+		margin-top: calc(80px - 8vw);
 	}
 }
 

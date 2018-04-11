@@ -9,10 +9,18 @@
     "yAxis": {},
     "legend": {
       "rightAlign:": false,
+      "align": true,
       "updateState": false,
       "margin": {
-        "left": 40
-      }
+        "left": -27,
+        "rigth": -40,
+        "bottom": 30
+      },
+      "padding": 25
+    },
+    "margin": {
+      "left": 33,
+      "rigth": 0
     },
     "color":[
       "#eb1c24",

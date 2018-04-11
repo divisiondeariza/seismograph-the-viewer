@@ -3,6 +3,8 @@ import { Input, Output, EventEmitter, DebugElement, Component } from '@angular/c
 import { of } from 'rxjs/observable/of';
 import { By } from '@angular/platform-browser';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 
 import { SelectPanelComponent } from './select-panel.component';
 import { CandidatesService } from '../../services/candidates/candidates.service';
@@ -72,7 +74,7 @@ describe('SelectPanelComponent', () => {
         { provide:  CandidatesService, useValue: candidatesService },
         { provide:  ModesService, useValue: modesService }
       ],
-      imports: [ PopoverModule.forRoot() ]
+      imports: [ PopoverModule.forRoot(), AngularFontAwesomeModule ]
     })
     .compileComponents();
   }));
